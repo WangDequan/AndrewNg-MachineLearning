@@ -1,0 +1,313 @@
+
+Sometime people talk about support
+vector machines,as large margin
+classifiers,in this video I'd
+like to tell you what that
+means, and this will
+also give us a useful
+picture of what an
+hypothesis may look like.
+Here's my Cos function for the support
+vector machine where here on the left
+I've plotted my Cos 1
+of z function that I used for positive examples and on the right I've  plotted my
+zero of 'Z' function graph
+here, with 'Z' on the horizontal axis.
+Now, let's think about what
+it takes to these cos functions small.
+If you have a positive example,
+so if y is equal to
+1, then cos 1 of
+Z is zero only when
+Z is greater than or equal to 1.
+So in other words, if you
+have a positive example, we really
+want theta [xx] to be greater
+than or equal to 1
+and conversely if y is
+equal to zero, of this
+cos zero of z function,
+then it's only in
+this region that z is
+less than equal to 1
+we have the course is zero
+as z is equals to zero,
+and this is an interesting property of the support
+vector machine right, which is
+that, if you have positive
+example so if y is equal to one,
+then all we really need
+is that data transport is greater than equal zero.
+And that would mean we classify correctly
+because if theta [xx] x is greater than zero our
+hypothesis will predict zero.
+And similarly, if you have
+a negative example, they
+less than zero and that will make sure we get the example right.
+But the support machine wants to do more than that.
+It says, you don't just barely get the example right.
+So then don't just
+have it just a little bit bigger thans zero. What
+i really want to is for
+this to be quite a lot
+because its zero, say maybe
+quick printed and you can
+and I want this to be much less than zero.
+Maybe I want it less than or
+equal to -1.
+And so this builds in an
+extra safety factor or safety
+margin factor the support vector
+machine logstic regressions
+are something similar too of
+course but lets see what
+happens or lets see what
+comes consequences of this are, in the
+context of the support vector machine.
+Concretely, what we'd like
+to do next is consider a
+case where we set
+this constant C to be
+a very large value, so let's
+imagine we shall see through
+a very large value, may be a hundred thousand, some huge number.
+Lets see what the support vector machine will do.
+If C is very,
+very large, then when minimizing
+this optimization objective, we're going
+to be highly motivated to choose
+a value, so that this
+first term is equal to zero.
+So let's try to
+understand the optimization problem in
+the context of, what would
+it take to make this
+first term in the objective
+equal to zero, because you
+know, maybe we'll set C to
+some huge constant, and this
+will hope, this should give us
+additional intuition about what
+sort of hypotheses a support vector machine learns.
+So we saw already that
+whenever you have a training
+example with a label
+of y1 if you
+want to make that first term
+zero, what you need is
+is to find a value of theta
+so that theta is greater
+than or equal to 1.
+Whenever we have an example,
+we label zero in order
+to make sure that the cost
+cause zero of Z,  in order to
+make sure that the cost cause
+zero we need that theta transfer
+was xy is less than or
+equal to, minus one?
+So, if we think
+of our optimization problem as
+now, really choosing parameters
+and showing that this first
+term is equal to zero,
+what we're left with is
+the following optimization problem, we're
+going to minimize that first
+term zero, so if C
+times zero, because we're going
+to choose parameters so that's equal
+to zero, plus one half
+and then you know that
+second term and this
+first term is 'C' times zero,
+so let's just cross that
+out because I know that's going to be zero.
+And this will be subject to the constraint
+that theta transpose xi
+is greater than or equal to
+one, if yi
+Is equal to one and
+the xi is less than
+or equal to minus one
+whenever you have
+a negative example and it
+turns out that when you
+solve this authorization problem it
+minimize this as a function of the parameters date
+you get a very interesting decision
+boundary. Concretely if you
+look at a data set
+like this with positive and negative examples,  this data
+is linearly separable and by
+that I mean that there exists s straight line,
+there is as many straight rate
+on it as they can separate the positive
+the good example
+is perfectly. For example, here is one discussion boundary
+that separates the positive and
+negative example, but somehow that
+doesn't look like a very
+natural one, right or by
+drawing even worse you know
+here's another decision boundary that
+separates the positive and negative examples  and I'll
+give examples we'll just be
+having but neither of those seem like categorical choices.
+The Support Vector Machines will instead choose this
+decision boundary, whichI'm drawing in black.
+And that seems like a much better.
+boundary then either of
+the one's that I drew in magenta or in green.
+The black line seems like a more
+robust separator, it does
+a better job of separating the
+positive and negative example and mathematically,
+what that does is, this
+boundary has a larger distance.
+That distance is called the margin, when I
+draw up this two extra
+blue lines, we see
+that the black decision boundary has
+some larger minimum distance from any of my.
+The good example is we
+are extra momentary the green
+lines thick humble thick close
+to the training example that seems
+to do a less great job separating the positive and negative classes than my black line.
+And so
+this distance is called
+the margin of the
+support fax machine and this
+gives the SVM a certain
+robustness, because it tries
+to separate the data with as
+a large a margin as possible.
+So the support vector machine is
+sometimes also called a large
+margin classifier and this
+is actually a consequence of
+the optimization problem we wrote down on the previous one.
+I know that you might be
+wondering how is it that
+the optimization problem I wrote
+down in the previous while, how
+does that lead to this large margin classifier.
+I know I haven't explained that yet.
+And in the next video
+I'm going to sketch a
+little bit of the intuition about why
+that optimization problem gives us
+this large margin classifier, but
+this is a useful feature to
+keep in mind if you are
+trying to understand what are the
+source of hypothesis that the Nesbian will choose.
+That is, trying to separate the
+positive and negative examples with as big a margin as possible.
+Once you say one last thing
+about large margin classifier in
+this intuition, so we
+left out this large margin classification
+setting in the case
+of when C organization concepts
+was very large, I think
+they say that's a hundred thousand something.
+So give a dataset
+like this, maybe we'll choose
+that decision boundary that
+separate the possible examples of large margins.
+Now, DSDM is actually sliding
+more sophisticated than this large
+margin view might suggest
+and in particular all you're
+doing is use a large
+margin classifier then your
+learning algorithms can be sensitive
+to out liners, so lets just
+add an extra your positive example
+like that shown on the screen.
+If he had one example then
+it seems as that the separate
+data with a large margin,
+maybe I'll end up learning
+the decision boundary like that
+right by this little gentle line and
+it's really not clear that based
+on the single outlier based on
+a single example and it's
+really not clear that it's
+actually a good idea to change
+my decision boundary from the black
+one over to the magenta one.
+So, if C, if
+the regularization parameter C were very
+large, then this is
+actually what DSDM will do, it will
+change the discussion boundary
+from the black to the
+monugental one but if
+c is reasonably small if
+you were to use the C,
+not too large then you
+still end up with this
+black decision behind you the data were not.
+And of course if the data were not linearly separable soo if you had some positive
+examples in here, or if
+you had some negative examples
+in here then the DSDM
+will also do the right thing.
+And so this picture of
+a large margin classifier that's
+really, that's really the
+picture that is only
+for the case of when the
+regulations and C is
+very large, and just
+to remind you this corresponds C
+plays a role similar to
+one over Lambda when Lambda
+is the regularization parameter
+we have previously have so it's
+only that one of the Lambda
+is very large or if
+Lambda with is very small that
+you end up with things like
+this Magenta decision boundary, but
+in practice when the applying support vector machines
+,when C
+is not very, very large like
+it can, we want if it can
+do a better job ignoring
+the few other lines like here. And
+it'll fine and  do reasonable things
+even if your data is not linearly separable.
+But when we talk about buyers and theories in the context of support vector machines
+which will do
+a little bit later, hopefully all
+of you sterols involve the regularization
+perimeter will become clearer at
+that time. So I hope
+that gives some intuition about
+how this functions as
+a large margin crossfire that
+tries to separate the data with
+a large margin, technically this
+picture of this view is true
+only when the parameter C is very large
+, which
+is a useful way to think about support vector machines.
+There was one missing step in
+this video which is, why is
+it that optimization problem we
+wrote down on these
+lines, how does that actually
+lead to the large margin classifier, I
+didn't do that in this video,
+in the next video I
+will sketch a little bit
+more of the man behind that
+to explain
+that separate reasoning of how
+the optimization problem we wrote out
+results in a large margin classifier.

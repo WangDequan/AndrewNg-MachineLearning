@@ -1,0 +1,1500 @@
+
+1
+00:00:00,009 --> 00:00:01,050
+You now know a bunch about machine learning.
+
+2
+00:00:02,039 --> 00:00:03,045
+In this video, I like to
+
+3
+00:00:03,056 --> 00:00:04,074
+teach you a programing language,
+
+4
+00:00:05,046 --> 00:00:06,061
+Octave, in which you'll be
+
+5
+00:00:06,075 --> 00:00:08,036
+able to very quickly implement
+
+6
+00:00:08,089 --> 00:00:10,008
+the the learning algorithms we've
+
+7
+00:00:10,019 --> 00:00:11,057
+seen already, and the learning
+
+8
+00:00:11,076 --> 00:00:14,060
+algorithms we'll see later in this course.
+
+9
+00:00:14,090 --> 00:00:15,094
+In the past, I've tried to teach machine learning
+
+10
+00:00:16,032 --> 00:00:19,001
+using a large variety of different programming languages
+
+11
+00:00:19,050 --> 00:00:20,080
+including C++ Java,
+
+12
+00:00:23,041 --> 00:00:25,001
+Python, NumPy, and also
+
+13
+00:00:25,053 --> 00:00:27,001
+Octave, and what I
+
+14
+00:00:27,016 --> 00:00:28,026
+found was that students were able
+
+15
+00:00:28,078 --> 00:00:30,012
+to learn the most
+
+16
+00:00:30,057 --> 00:00:32,002
+productively learn the most quickly
+
+17
+00:00:32,045 --> 00:00:33,057
+and prototype your algorithms most
+
+18
+00:00:33,077 --> 00:00:35,000
+quickly using a relatively
+
+19
+00:00:35,056 --> 00:00:36,077
+high level language like octave.
+
+20
+00:00:38,028 --> 00:00:39,049
+In fact, what I often
+
+21
+00:00:39,078 --> 00:00:41,007
+see in Silicon Valley is
+
+22
+00:00:41,052 --> 00:00:43,024
+that if even if you need to build.
+
+23
+00:00:43,064 --> 00:00:44,056
+If you want to build a large
+
+24
+00:00:44,074 --> 00:00:45,084
+scale deployment of a learning
+
+25
+00:00:46,060 --> 00:00:47,075
+algorithm, what people will often do
+
+26
+00:00:48,024 --> 00:00:50,015
+is prototype and the language is Octave.
+
+27
+00:00:50,065 --> 00:00:51,079
+Which is a great prototyping language.
+
+28
+00:00:52,021 --> 00:00:54,010
+So you can sort of get your learning algorithms working quickly.
+
+29
+00:00:55,027 --> 00:00:56,025
+And then only if you need
+
+30
+00:00:56,060 --> 00:00:58,028
+to a very large scale deployment of it.
+
+31
+00:00:58,047 --> 00:00:59,067
+Only then spend your time
+
+32
+00:01:00,035 --> 00:01:02,089
+re-implementing the algorithm
+
+33
+00:01:03,002 --> 00:01:04,095
+to C++ Java or some of the language like that.
+
+34
+00:01:05,015 --> 00:01:06,015
+Because all the lessons we've learned is
+
+35
+00:01:06,029 --> 00:01:08,031
+that a time or develop a time.
+
+36
+00:01:08,078 --> 00:01:09,034
+That is your time.
+
+37
+00:01:09,087 --> 00:01:12,014
+The machine learning's time is incredibly valuable.
+
+38
+00:01:13,031 --> 00:01:14,067
+And if you can
+
+39
+00:01:15,009 --> 00:01:17,018
+get your learning algorithms to work more quickly in Octave.
+
+40
+00:01:17,084 --> 00:01:18,084
+Then overall you have a
+
+41
+00:01:18,089 --> 00:01:20,042
+huge time savings by first
+
+42
+00:01:20,071 --> 00:01:22,001
+developing the algorithms in
+
+43
+00:01:22,015 --> 00:01:23,073
+Octave, and then implementing and
+
+44
+00:01:23,095 --> 00:01:26,093
+maybe C++ Java, only after we have the ideas working.
+
+45
+00:01:28,015 --> 00:01:30,012
+The most common prototyping language I
+
+46
+00:01:30,023 --> 00:01:31,023
+see people use for machine
+
+47
+00:01:31,056 --> 00:01:33,031
+learning are: Octave, MATLAB,
+
+48
+00:01:34,006 --> 00:01:37,023
+Python, NumPy, and R.
+
+49
+00:01:38,015 --> 00:01:39,073
+Octave is nice because open sourced.
+
+50
+00:01:40,001 --> 00:01:42,045
+And MATLAB works well
+
+51
+00:01:42,067 --> 00:01:43,034
+too, but it is expensive for
+
+52
+00:01:44,081 --> 00:01:45,023
+to many people.
+
+53
+00:01:45,095 --> 00:01:47,028
+But if you have access to a copy of MATLAB.
+
+54
+00:01:47,090 --> 00:01:49,028
+You can also use MATLAB with this class.
+
+55
+00:01:50,010 --> 00:01:51,056
+If you know Python, NumPy,
+
+56
+00:01:52,001 --> 00:01:54,053
+or if you know R. I do see some people use it.
+
+57
+00:01:54,087 --> 00:01:56,023
+But, what I see is
+
+58
+00:01:56,035 --> 00:01:57,056
+that people usually end up
+
+59
+00:01:57,076 --> 00:01:59,060
+developing somewhat more slowly, and
+
+60
+00:02:00,004 --> 00:02:01,029
+you know, these languages.
+
+61
+00:02:02,010 --> 00:02:03,051
+Because the Python, NumPy syntax
+
+62
+00:02:04,001 --> 00:02:06,095
+is just slightly clunkier than the Octave syntax.
+
+63
+00:02:08,040 --> 00:02:09,055
+And so because of that, and
+
+64
+00:02:09,069 --> 00:02:10,087
+because we are releasing starter
+
+65
+00:02:11,037 --> 00:02:12,066
+code in Octave.
+
+66
+00:02:13,003 --> 00:02:14,024
+I strongly recommend that you
+
+67
+00:02:14,036 --> 00:02:16,009
+not try to do the following exercises in this class in NumPy and R.
+
+68
+00:02:18,033 --> 00:02:19,062
+But that I do recommend that
+
+69
+00:02:19,078 --> 00:02:20,099
+you instead do the programming exercises
+
+70
+00:02:21,052 --> 00:02:22,080
+for this class in octave instead.
+
+71
+00:02:24,033 --> 00:02:25,031
+What I'm going to do in
+
+72
+00:02:25,040 --> 00:02:26,040
+this video is go through
+
+73
+00:02:26,066 --> 00:02:28,018
+a list of commands very,
+
+74
+00:02:28,065 --> 00:02:29,071
+very quickly, and its goal
+
+75
+00:02:29,087 --> 00:02:30,094
+is to quickly show you the
+
+76
+00:02:31,008 --> 00:02:33,053
+range of commands and the range of things you can do in Octave.
+
+77
+00:02:34,078 --> 00:02:36,037
+The course website will have
+
+78
+00:02:36,052 --> 00:02:38,078
+a transcript of everything I
+
+79
+00:02:38,093 --> 00:02:41,068
+do, and so after
+
+80
+00:02:42,008 --> 00:02:43,000
+watching this video you
+
+81
+00:02:43,015 --> 00:02:44,052
+can refer to the transcript
+
+82
+00:02:44,088 --> 00:02:45,084
+posted on the course website
+
+83
+00:02:46,062 --> 00:02:47,056
+when you want find a command.
+
+84
+00:02:48,021 --> 00:02:49,078
+Concretely, what I recommend
+
+85
+00:02:50,016 --> 00:02:52,024
+you do is first watch the tutorial videos.
+
+86
+00:02:53,022 --> 00:02:54,097
+And after watching to the
+
+87
+00:02:55,012 --> 00:02:57,038
+end, then install Octave on your computer.
+
+88
+00:02:58,071 --> 00:02:59,062
+And finally, it goes to
+
+89
+00:02:59,068 --> 00:03:01,000
+the course website, download the transcripts
+
+90
+00:03:01,077 --> 00:03:02,086
+of the things you see in the
+
+91
+00:03:02,096 --> 00:03:04,072
+session, and type in
+
+92
+00:03:04,093 --> 00:03:06,069
+whatever commands seem interesting
+
+93
+00:03:07,019 --> 00:03:08,084
+to you into Octave, so that it's
+
+94
+00:03:09,011 --> 00:03:10,034
+running on your own computer, so
+
+95
+00:03:10,059 --> 00:03:11,090
+you can see it run for yourself.
+
+96
+00:03:12,096 --> 00:03:14,012
+And with that let's get started.
+
+97
+00:03:15,091 --> 00:03:18,043
+Here's my Windows desktop, and I'm going to start up Octave.
+
+98
+00:03:19,037 --> 00:03:20,069
+And I'm now in Octave.
+
+99
+00:03:20,096 --> 00:03:22,006
+And that's my Octave prompt.
+
+100
+00:03:22,049 --> 00:03:23,088
+Let me first show the elementary
+
+101
+00:03:24,046 --> 00:03:26,065
+operations you can do in Octave.
+
+102
+00:03:27,033 --> 00:03:28,028
+So you type in 5 + 6.
+
+103
+00:03:28,046 --> 00:03:30,056
+That gives you the answer of 11.
+
+104
+00:03:30,065 --> 00:03:30,087
+3 - 2.
+
+105
+00:03:31,053 --> 00:03:33,050
+5 x 8, 1/2, 2^6
+
+106
+00:03:33,069 --> 00:03:35,072
+
+
+107
+00:03:35,081 --> 00:03:37,046
+is 64.
+
+108
+00:03:37,081 --> 00:03:41,053
+So those are the elementary math operations.
+
+109
+00:03:42,038 --> 00:03:43,090
+You can also do logical operations.
+
+110
+00:03:44,055 --> 00:03:45,075
+So one equals two.
+
+111
+00:03:45,090 --> 00:03:47,025
+This evaluates to false.
+
+112
+00:03:47,071 --> 00:03:50,094
+The percent command here means a comment.
+
+113
+00:03:51,063 --> 00:03:53,062
+So, one equals two, evaluates to false.
+
+114
+00:03:53,086 --> 00:03:54,093
+Which is represents by zero.
+
+115
+00:03:55,065 --> 00:03:58,012
+One not equals to two.
+
+116
+00:03:58,053 --> 00:03:58,053
+This is true.
+
+117
+00:03:59,008 --> 00:04:00,000
+So that returns one.
+
+118
+00:04:00,062 --> 00:04:01,069
+Note that a not equal sign
+
+119
+00:04:02,012 --> 00:04:04,053
+is this tilde equals symbol.
+
+120
+00:04:05,055 --> 00:04:06,028
+And not bang equals.
+
+121
+00:04:07,021 --> 00:04:08,062
+Which is what some other
+
+122
+00:04:10,018 --> 00:04:10,074
+programming languages use.
+
+123
+00:04:10,090 --> 00:04:12,096
+Lets see large operations one and zero
+
+124
+00:04:13,052 --> 00:04:15,012
+use a double ampersand sign to
+
+125
+00:04:15,050 --> 00:04:17,033
+the logical AND.
+
+126
+00:04:18,012 --> 00:04:19,048
+And that evaluates false.
+
+127
+00:04:20,013 --> 00:04:23,004
+One or zero is the OR operation.
+
+128
+00:04:23,089 --> 00:04:24,088
+And that evaluates to true.
+
+129
+00:04:25,073 --> 00:04:26,089
+And I can XOR one and
+
+130
+00:04:27,006 --> 00:04:28,081
+zero, and that evaluates to one.
+
+131
+00:04:30,026 --> 00:04:32,038
+This thing over on the left, this Octave 324.x
+
+132
+00:04:32,087 --> 00:04:35,016
+equals 11, this is the default Octave prompt.
+
+133
+00:04:35,069 --> 00:04:37,038
+It shows the, what, the
+
+134
+00:04:37,051 --> 00:04:38,094
+version in Octave and so on.
+
+135
+00:04:39,012 --> 00:04:39,089
+If you don't want that prompt,
+
+136
+00:04:40,044 --> 00:04:42,004
+there's a somewhat cryptic command PF
+
+137
+00:04:42,098 --> 00:04:44,026
+quote, greater than, greater
+
+138
+00:04:44,066 --> 00:04:46,033
+than and so on,
+
+139
+00:04:46,060 --> 00:04:48,039
+that you can use to change the prompt.
+
+140
+00:04:48,081 --> 00:04:50,061
+And I guess this quote a string in the middle.
+
+141
+00:04:51,026 --> 00:04:52,069
+Your quote, greater than, greater than, space.
+
+142
+00:04:53,039 --> 00:04:55,061
+That's what I prefer my Octave prompt to look like.
+
+143
+00:04:55,093 --> 00:04:56,031
+So if I hit enter.
+
+144
+00:04:57,092 --> 00:04:58,055
+Oops, excuse me.
+
+145
+00:05:00,035 --> 00:05:00,054
+Like so.
+
+146
+00:05:00,072 --> 00:05:01,095
+PS1 like so.
+
+147
+00:05:02,060 --> 00:05:05,042
+Now my Octave prompt has changed to the greater than, greater than sign.Which,
+
+148
+00:05:05,050 --> 00:05:07,054
+you know, looks quite a bit better.
+
+149
+00:05:09,070 --> 00:05:11,043
+Next let's talk about Octave variables.
+
+150
+00:05:12,037 --> 00:05:13,048
+I can take the variable
+
+151
+00:05:13,086 --> 00:05:15,057
+A and assign it to 3.
+
+152
+00:05:16,013 --> 00:05:17,038
+And hit enter.
+
+153
+00:05:18,043 --> 00:05:19,092
+And now A is equal to 3.
+
+154
+00:05:20,006 --> 00:05:22,043
+You want to assign a variable, but you don't want to print out the result.
+
+155
+00:05:22,086 --> 00:05:25,025
+If you put a semicolon, the semicolon
+
+156
+00:05:26,092 --> 00:05:30,026
+suppresses the print output.
+
+157
+00:05:30,080 --> 00:05:32,075
+So to do that, enter, it doesn't print anything.
+
+158
+00:05:33,012 --> 00:05:34,002
+Whereas A equals 3.
+
+159
+00:05:35,042 --> 00:05:36,035
+mix it, print it out,
+
+160
+00:05:36,068 --> 00:05:38,086
+where A equals, 3 semicolon doesn't print anything.
+
+161
+00:05:39,085 --> 00:05:40,066
+I can do string assignment.
+
+162
+00:05:41,049 --> 00:05:41,094
+B equals high.
+
+163
+00:05:43,051 --> 00:05:44,076
+Now if I just
+
+164
+00:05:45,002 --> 00:05:45,098
+enter B it prints out the
+
+165
+00:05:46,004 --> 00:05:47,062
+variable B. So B is the string high.
+
+166
+00:05:48,037 --> 00:05:50,061
+C equals 3 greater than colon 1.
+
+167
+00:05:51,012 --> 00:05:54,002
+So, now C evaluates the true.
+
+168
+00:05:55,070 --> 00:05:57,043
+If you want to print
+
+169
+00:05:58,002 --> 00:06:00,033
+out or display a variable, here's how you go about it.
+
+170
+00:06:00,080 --> 00:06:02,011
+Let me set A equals Pi.
+
+171
+00:06:03,075 --> 00:06:04,080
+And if I want to print
+
+172
+00:06:04,095 --> 00:06:07,075
+A I can just type A like so, and it will print it out.
+
+173
+00:06:08,051 --> 00:06:10,018
+For more complex printing there is
+
+174
+00:06:10,032 --> 00:06:13,012
+also the DISP command which stands for Display.
+
+175
+00:06:13,070 --> 00:06:14,092
+Display A just prints out A like so.
+
+176
+00:06:15,088 --> 00:06:17,086
+You can also display strings
+
+177
+00:06:18,035 --> 00:06:21,012
+so: DISP, sprintf, two
+
+178
+00:06:21,045 --> 00:06:24,099
+decimals, percent 0.2,
+
+179
+00:06:25,025 --> 00:06:27,035
+F, comma, A. Like so.
+
+180
+00:06:28,025 --> 00:06:29,054
+And this will print out the string.
+
+181
+00:06:29,087 --> 00:06:30,082
+Two decimals, colon, 3.14.
+
+182
+00:06:31,068 --> 00:06:33,001
+This is kind of
+
+183
+00:06:33,067 --> 00:06:35,026
+an old style C syntax.
+
+184
+00:06:35,099 --> 00:06:37,025
+For those of you that
+
+185
+00:06:37,042 --> 00:06:38,094
+have programmed C before, this is
+
+186
+00:06:39,006 --> 00:06:41,004
+essentially the syntax you use to print screen.
+
+187
+00:06:41,037 --> 00:06:44,038
+So the Sprintf generates a
+
+188
+00:06:44,050 --> 00:06:45,079
+string that is less
+
+189
+00:06:45,097 --> 00:06:47,031
+than the 2 decimals, 3.1 plus string.
+
+190
+00:06:48,029 --> 00:06:49,068
+This percent 0.2 F means
+
+191
+00:06:50,062 --> 00:06:51,088
+substitute A into here,
+
+192
+00:06:52,037 --> 00:06:55,007
+showing the two digits after the decimal points.
+
+193
+00:06:55,091 --> 00:06:57,014
+And DISP takes the string
+
+194
+00:06:58,012 --> 00:06:59,086
+DISP generates it by the Sprintf command.
+
+195
+00:07:00,037 --> 00:07:00,037
+Sprintf.
+
+196
+00:07:01,095 --> 00:07:02,066
+The Sprintf command.
+
+197
+00:07:03,001 --> 00:07:04,081
+And DISP actually displays the string.
+
+198
+00:07:05,087 --> 00:07:06,081
+And to show you another
+
+199
+00:07:07,000 --> 00:07:11,036
+example, Sprintf six decimals
+
+200
+00:07:11,093 --> 00:07:13,092
+percent 0.6 F comma A.
+
+201
+00:07:14,093 --> 00:07:16,066
+And, this should print Pi
+
+202
+00:07:17,008 --> 00:07:19,089
+with six decimal places.
+
+203
+00:07:22,006 --> 00:07:24,062
+Finally, I was saying, a like so, looks like this. There
+
+204
+00:07:25,074 --> 00:07:27,070
+are useful shortcuts that type type formats long.
+
+205
+00:07:28,062 --> 00:07:30,079
+It causes strings by default.
+
+206
+00:07:31,075 --> 00:07:33,020
+Be displayed to a lot more decimal places.
+
+207
+00:07:33,072 --> 00:07:35,047
+And format short is a
+
+208
+00:07:35,052 --> 00:07:36,070
+command that restores the default
+
+209
+00:07:37,012 --> 00:07:38,099
+of just printing a small number of digits.
+
+210
+00:07:40,060 --> 00:07:42,098
+Okay, that's how you work with variables.
+
+211
+00:07:43,087 --> 00:07:45,097
+Now let's look at vectors and matrices.
+
+212
+00:07:47,006 --> 00:07:48,072
+Let's say I want to assign MAT A to the matrix.
+
+213
+00:07:49,027 --> 00:07:50,062
+Let me show you an example: 1, 2,
+
+214
+00:07:50,098 --> 00:07:53,067
+semicolon, 3, 4, semicolon, 5, 6.
+
+215
+00:07:54,060 --> 00:07:56,001
+This generates a three by
+
+216
+00:07:56,024 --> 00:07:58,027
+two matrix A whose first
+
+217
+00:07:58,057 --> 00:07:59,068
+row is 1, 2. Second row
+
+218
+00:07:59,081 --> 00:08:01,062
+3, 4. Third row is 5, 6.
+
+219
+00:08:02,000 --> 00:08:03,076
+What the semicolon does is
+
+220
+00:08:04,038 --> 00:08:05,068
+essentially say, go to
+
+221
+00:08:05,081 --> 00:08:07,030
+the next row of the matrix.
+
+222
+00:08:07,083 --> 00:08:08,076
+There are other ways to type this in.
+
+223
+00:08:08,088 --> 00:08:10,029
+Type A 1, 2 semicolon
+
+224
+00:08:11,050 --> 00:08:14,060
+3, 4, semicolon, 5, 6, like so.
+
+225
+00:08:15,004 --> 00:08:16,089
+And that's another equivalent way of
+
+226
+00:08:17,002 --> 00:08:18,032
+assigning A to be
+
+227
+00:08:18,055 --> 00:08:20,086
+the values of this three by two matrix.
+
+228
+00:08:22,019 --> 00:08:23,002
+Similarly you can assign vectors.
+
+229
+00:08:23,045 --> 00:08:25,024
+So V equals 1, 2, 3.
+
+230
+00:08:25,056 --> 00:08:26,079
+This is actually a row vector.
+
+231
+00:08:27,035 --> 00:08:29,030
+Or this is a 3 by 1 vector.
+
+232
+00:08:29,093 --> 00:08:31,017
+Where that is a fat Y vector,
+
+233
+00:08:32,002 --> 00:08:33,036
+excuse me, not, this is
+
+234
+00:08:34,037 --> 00:08:37,005
+a 1 by 3 matrix, right.
+
+235
+00:08:37,096 --> 00:08:38,080
+Nothing by 1.
+
+236
+00:08:39,025 --> 00:08:40,060
+If I want to assign
+
+237
+00:08:41,000 --> 00:08:43,036
+this to a column vector,
+
+238
+00:08:43,097 --> 00:08:48,026
+what I would do instead is do v 1;2;3.
+
+239
+00:08:48,083 --> 00:08:50,002
+And this will give me a 3 by 1.
+
+240
+00:08:50,010 --> 00:08:51,032
+There's a 1 by 3 vector.
+
+241
+00:08:51,064 --> 00:08:54,020
+So this will be a column vector.
+
+242
+00:08:56,025 --> 00:08:57,042
+Here's some more useful notation.
+
+243
+00:08:57,096 --> 00:09:01,062
+V equals 1: 0.1: 2.
+
+244
+00:09:02,027 --> 00:09:03,046
+What this does is
+
+245
+00:09:03,062 --> 00:09:05,047
+it sets V to the bunch
+
+246
+00:09:05,070 --> 00:09:07,036
+of elements that start from 1.
+
+247
+00:09:08,071 --> 00:09:10,010
+And increments and steps
+
+248
+00:09:10,040 --> 00:09:13,037
+of 0.1 until you get up to 2.
+
+249
+00:09:13,065 --> 00:09:17,046
+So if I do this, V is going to be this, you know, row vector.
+
+250
+00:09:19,013 --> 00:09:22,036
+This is what one by eleven matrix really.
+
+251
+00:09:22,099 --> 00:09:23,057
+That's 1, 1.1, 1.2, 1.3 and
+
+252
+00:09:23,061 --> 00:09:26,009
+so on until we
+
+253
+00:09:27,062 --> 00:09:28,071
+get up to two.
+
+254
+00:09:31,044 --> 00:09:32,089
+Now, and I can also
+
+255
+00:09:33,023 --> 00:09:34,048
+set V equals one colon six,
+
+256
+00:09:35,005 --> 00:09:37,026
+and that sets V to be these numbers.
+
+257
+00:09:38,019 --> 00:09:39,065
+1 through 6, okay.
+
+258
+00:09:41,062 --> 00:09:43,050
+Now here are some other ways to generate matrices.
+
+259
+00:09:44,023 --> 00:09:46,077
+Ones 2.3 is a command
+
+260
+00:09:47,029 --> 00:09:48,098
+that generates a matrix that
+
+261
+00:09:49,013 --> 00:09:50,019
+is a two by three matrix
+
+262
+00:09:50,076 --> 00:09:51,082
+that is the matrix of all ones.
+
+263
+00:09:52,070 --> 00:09:53,055
+So if I set that c2
+
+264
+00:09:54,000 --> 00:09:56,062
+times ones two by
+
+265
+00:09:56,083 --> 00:09:59,028
+three this generates a
+
+266
+00:09:59,076 --> 00:10:02,042
+two by three matrix that is all two's.
+
+267
+00:10:03,008 --> 00:10:03,091
+You can think of this as a
+
+268
+00:10:04,023 --> 00:10:05,038
+shorter way of writing this and
+
+269
+00:10:05,054 --> 00:10:06,062
+c2,2,2's and you can
+
+270
+00:10:06,088 --> 00:10:09,072
+call them 2,2,2, which would also give you the same result.
+
+271
+00:10:11,045 --> 00:10:13,071
+Let's say W equals one's, one
+
+272
+00:10:13,091 --> 00:10:15,026
+by three, so this is
+
+273
+00:10:15,046 --> 00:10:17,025
+going to be a row vector
+
+274
+00:10:17,094 --> 00:10:20,046
+or a row of
+
+275
+00:10:20,099 --> 00:10:23,033
+three one's and similarly
+
+276
+00:10:23,085 --> 00:10:24,094
+you can also say w equals
+
+277
+00:10:25,046 --> 00:10:27,029
+zeroes, one by
+
+278
+00:10:27,045 --> 00:10:29,084
+three, and this generates a matrix.
+
+279
+00:10:30,022 --> 00:10:33,024
+A one by three matrix of all zeros.
+
+280
+00:10:34,073 --> 00:10:36,071
+Just a couple more ways to generate matrices .
+
+281
+00:10:36,092 --> 00:10:38,038
+If I do W equals
+
+282
+00:10:39,011 --> 00:10:40,041
+Rand one by three,
+
+283
+00:10:41,051 --> 00:10:42,085
+this gives me a one
+
+284
+00:10:43,001 --> 00:10:44,097
+by three matrix of all random numbers.
+
+285
+00:10:45,090 --> 00:10:46,035
+If I do Rand
+
+286
+00:10:48,020 --> 00:10:48,059
+three by three.
+
+287
+00:10:49,004 --> 00:10:50,013
+This gives me a three by
+
+288
+00:10:50,032 --> 00:10:51,061
+three matrix of all
+
+289
+00:10:51,092 --> 00:10:53,063
+random numbers drawn from the
+
+290
+00:10:54,000 --> 00:10:55,062
+uniform distribution between zero and one.
+
+291
+00:10:55,082 --> 00:10:56,065
+So every time I do
+
+292
+00:10:56,088 --> 00:10:57,089
+this, I get a different
+
+293
+00:10:58,055 --> 00:11:00,011
+set of random numbers drawn
+
+294
+00:11:00,053 --> 00:11:02,004
+uniformly between zero and one.
+
+295
+00:11:02,057 --> 00:11:03,058
+For those of you that
+
+296
+00:11:03,071 --> 00:11:04,096
+know what a Gaussian random variable
+
+297
+00:11:05,040 --> 00:11:06,009
+is or for those of you that
+
+298
+00:11:06,024 --> 00:11:07,028
+know what a normal random variable
+
+299
+00:11:07,065 --> 00:11:08,082
+is, you can also set W
+
+300
+00:11:09,011 --> 00:11:11,011
+equals Rand N, one by three.
+
+301
+00:11:11,099 --> 00:11:13,035
+And so these are going
+
+302
+00:11:13,057 --> 00:11:15,001
+to be three values drawn from
+
+303
+00:11:15,042 --> 00:11:17,049
+a Gaussian distribution with mean
+
+304
+00:11:17,074 --> 00:11:19,001
+zero and variance or
+
+305
+00:11:19,025 --> 00:11:21,037
+standard deviation equal to one.
+
+306
+00:11:21,062 --> 00:11:22,061
+And you can set more complex
+
+307
+00:11:23,014 --> 00:11:24,036
+things like W equals minus
+
+308
+00:11:24,064 --> 00:11:25,084
+six, plus the square root
+
+309
+00:11:26,021 --> 00:11:28,040
+ten, times, lets say
+
+310
+00:11:28,065 --> 00:11:30,063
+Rand N, one by ten thousand.
+
+311
+00:11:31,087 --> 00:11:32,086
+And I'm going to put a semicolon at
+
+312
+00:11:33,004 --> 00:11:35,029
+the end because I don't really want this printed out.
+
+313
+00:11:35,060 --> 00:11:37,023
+This is going to be a what?
+
+314
+00:11:37,055 --> 00:11:38,072
+Well, it's going to
+
+315
+00:11:38,090 --> 00:11:40,012
+be a vector of, with
+
+316
+00:11:40,061 --> 00:11:43,045
+a hundred thousand, excuse me, ten thousand elements.
+
+317
+00:11:44,049 --> 00:11:47,035
+So, well, actually, you know what?
+
+318
+00:11:47,059 --> 00:11:48,002
+Let's print it out.
+
+319
+00:11:48,025 --> 00:11:50,016
+So this will generate a matrix like this.
+
+320
+00:11:51,079 --> 00:11:51,079
+Right?
+
+321
+00:11:51,096 --> 00:11:53,007
+With 10,000 elements.
+
+322
+00:11:53,096 --> 00:11:54,085
+So that's what W is.
+
+323
+00:11:55,076 --> 00:11:56,089
+And if I now
+
+324
+00:11:57,037 --> 00:11:58,095
+plot a histogram of W
+
+325
+00:11:59,040 --> 00:12:01,050
+with a hist command, I can
+
+326
+00:12:01,082 --> 00:12:04,028
+now. And Octave's print hist
+
+327
+00:12:04,074 --> 00:12:05,073
+command, you know, takes a
+
+328
+00:12:06,009 --> 00:12:07,001
+couple seconds to bring this up,
+
+329
+00:12:07,020 --> 00:12:08,077
+but this is a histogram of
+
+330
+00:12:08,097 --> 00:12:10,000
+my random variable for W.
+
+331
+00:12:10,064 --> 00:12:12,044
+There was minus 6 plus zero
+
+332
+00:12:12,066 --> 00:12:14,046
+ten times this Gaussian random variable.
+
+333
+00:12:15,051 --> 00:12:16,086
+And I can plot a histogram with
+
+334
+00:12:17,055 --> 00:12:19,097
+more buckets, with more bins, with say, 50 bins.
+
+335
+00:12:20,098 --> 00:12:22,047
+And this is my
+
+336
+00:12:22,051 --> 00:12:25,035
+histogram of a Gaussian with mean minus 6.
+
+337
+00:12:25,069 --> 00:12:26,087
+Because I have a minus
+
+338
+00:12:27,023 --> 00:12:29,007
+6 there plus square root 10 times this.
+
+339
+00:12:29,023 --> 00:12:32,005
+So the variance of
+
+340
+00:12:32,094 --> 00:12:34,033
+this Gaussian random variable
+
+341
+00:12:34,094 --> 00:12:36,025
+is 10 on the standard deviation is
+
+342
+00:12:36,070 --> 00:12:38,072
+square root of 10, which is about what?
+
+343
+00:12:38,095 --> 00:12:39,053
+Three point one.
+
+344
+00:12:41,077 --> 00:12:43,037
+Finally, one special command
+
+345
+00:12:43,080 --> 00:12:45,070
+for generator matrix, which is the I command.
+
+346
+00:12:46,020 --> 00:12:47,063
+So I stands for this
+
+347
+00:12:48,033 --> 00:12:50,012
+is maybe a pun on the word identity.
+
+348
+00:12:51,004 --> 00:12:52,064
+It's server set eye 4.
+
+349
+00:12:52,072 --> 00:12:55,045
+This is the 4 by 4 identity matrix.
+
+350
+00:12:55,099 --> 00:12:57,025
+So I equals eye 4.
+
+351
+00:12:57,066 --> 00:12:59,095
+This gives me a 4 by 4 identity matrix.
+
+352
+00:13:00,045 --> 00:13:03,046
+And I equals eye 5,  eye 6.
+
+353
+00:13:04,042 --> 00:13:05,037
+That gives me a 6 by
+
+354
+00:13:05,059 --> 00:13:07,012
+6 identity matrix, i3
+
+355
+00:13:08,012 --> 00:13:08,098
+is the 3 by 3 identity matrix.
+
+356
+00:13:09,012 --> 00:13:11,090
+Lastly, to
+
+357
+00:13:12,000 --> 00:13:13,094
+wrap up this video, there's one more useful command.
+
+358
+00:13:14,027 --> 00:13:14,090
+Which is the help command.
+
+359
+00:13:15,033 --> 00:13:17,029
+So you can type help i and
+
+360
+00:13:17,042 --> 00:13:20,014
+this brings up the help function for the identity matrix.
+
+361
+00:13:21,019 --> 00:13:21,087
+Hit Q to quit.
+
+362
+00:13:22,075 --> 00:13:24,059
+And you can also type help rand.
+
+363
+00:13:25,037 --> 00:13:27,047
+Brings up documentation for the rand or the
+
+364
+00:13:27,076 --> 00:13:29,017
+random number generation function.
+
+365
+00:13:29,071 --> 00:13:31,075
+Or even help help, which
+
+366
+00:13:31,089 --> 00:13:33,083
+shows you, you know help on the help function.
+
+367
+00:13:37,007 --> 00:13:38,055
+So, those are the
+
+368
+00:13:38,095 --> 00:13:41,014
+basic operations in Octave.
+
+369
+00:13:41,058 --> 00:13:42,052
+And with this you should be
+
+370
+00:13:42,061 --> 00:13:45,050
+able to generate a few matrices, multiply, add things.
+
+371
+00:13:47,012 --> 00:13:49,042
+And use the basic operations in Octave.
+
+372
+00:13:50,055 --> 00:13:51,076
+In the next video, I'd like
+
+373
+00:13:51,091 --> 00:13:53,050
+to start talking about more
+
+374
+00:13:53,079 --> 00:13:55,050
+sophisticated commands and how
+
+375
+00:13:55,075 --> 00:13:58,058
+to use data around and start to process data in Octave.

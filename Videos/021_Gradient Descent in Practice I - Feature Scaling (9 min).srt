@@ -1,0 +1,1008 @@
+
+1
+00:00:00,019 --> 00:00:01,027
+In this video and in
+
+2
+00:00:01,043 --> 00:00:02,072
+the video after this one, I
+
+3
+00:00:02,085 --> 00:00:04,004
+wanna tell you about some of
+
+4
+00:00:04,017 --> 00:00:06,094
+the practical tricks for making gradient descent work well.
+
+5
+00:00:07,067 --> 00:00:10,025
+In this video, I want to tell you about an idea called feature skill.
+
+6
+00:00:11,076 --> 00:00:12,021
+Here's the idea.
+
+7
+00:00:13,002 --> 00:00:14,008
+If you have a problem where you
+
+8
+00:00:14,017 --> 00:00:15,088
+have multiple features, if you
+
+9
+00:00:16,032 --> 00:00:17,041
+make sure that the features
+
+10
+00:00:18,005 --> 00:00:19,044
+are on a similar scale, by
+
+11
+00:00:19,057 --> 00:00:20,048
+which I mean make sure that
+
+12
+00:00:20,064 --> 00:00:22,012
+the different features take on
+
+13
+00:00:22,030 --> 00:00:23,039
+similar ranges of values,
+
+14
+00:00:24,042 --> 00:00:26,048
+then gradient descents can converge more quickly.
+
+15
+00:00:27,051 --> 00:00:28,067
+Concretely let's say you
+
+16
+00:00:28,082 --> 00:00:29,085
+have a problem with two features
+
+17
+00:00:30,037 --> 00:00:31,067
+where X1 is the size
+
+18
+00:00:31,094 --> 00:00:32,085
+of house and takes on values
+
+19
+00:00:33,053 --> 00:00:34,053
+between say zero to two thousand
+
+20
+00:00:35,049 --> 00:00:36,027
+and two is the number
+
+21
+00:00:36,052 --> 00:00:37,057
+of bedrooms, and maybe that takes
+
+22
+00:00:37,082 --> 00:00:39,025
+on values between one and five.
+
+23
+00:00:40,010 --> 00:00:41,068
+If you plot the contours of
+
+24
+00:00:41,079 --> 00:00:43,000
+the cos function J of theta,
+
+25
+00:00:44,081 --> 00:00:46,053
+then the contours may look
+
+26
+00:00:46,075 --> 00:00:49,000
+like this, where, let's see,
+
+27
+00:00:49,022 --> 00:00:50,057
+J of theta is a function
+
+28
+00:00:50,090 --> 00:00:53,059
+of parameters theta zero, theta one and theta two.
+
+29
+00:00:54,029 --> 00:00:55,039
+I'm going to ignore theta zero,
+
+30
+00:00:56,002 --> 00:00:57,022
+so let's about theta 0
+
+31
+00:00:57,047 --> 00:00:58,072
+and pretend as a function of
+
+32
+00:00:58,084 --> 00:01:01,007
+only theta 1 and theta
+
+33
+00:01:01,050 --> 00:01:02,081
+2, but if x1 can take on
+
+34
+00:01:02,093 --> 00:01:04,010
+them, you know, much larger range
+
+35
+00:01:04,037 --> 00:01:05,079
+of values and x2 It turns
+
+36
+00:01:06,012 --> 00:01:07,026
+out that the contours of the
+
+37
+00:01:07,034 --> 00:01:08,031
+cause function J of theta
+
+38
+00:01:09,042 --> 00:01:11,040
+can take on this very
+
+39
+00:01:11,068 --> 00:01:14,071
+very skewed elliptical shape, except
+
+40
+00:01:15,006 --> 00:01:16,062
+that with the so 2000 to
+
+41
+00:01:16,076 --> 00:01:18,046
+5 ratio, it can be even more secure.
+
+42
+00:01:18,079 --> 00:01:20,018
+So, this is very, very tall
+
+43
+00:01:20,056 --> 00:01:23,006
+and skinny ellipses, or these
+
+44
+00:01:23,031 --> 00:01:24,095
+very tall skinny ovals, can form
+
+45
+00:01:25,031 --> 00:01:27,093
+the contours of the cause function J of theta.
+
+46
+00:01:29,042 --> 00:01:30,085
+And if you run gradient descents
+
+47
+00:01:30,093 --> 00:01:34,029
+on this cos-function, your
+
+48
+00:01:34,082 --> 00:01:36,048
+gradients may end up
+
+49
+00:01:36,096 --> 00:01:38,065
+taking a long time and
+
+50
+00:01:39,007 --> 00:01:40,035
+can oscillate back and forth
+
+51
+00:01:41,009 --> 00:01:43,012
+and take a long time before it
+
+52
+00:01:43,018 --> 00:01:46,012
+can finally find its way to the global minimum.
+
+53
+00:01:47,046 --> 00:01:48,071
+In fact, you can imagine if these
+
+54
+00:01:48,089 --> 00:01:50,040
+contours are exaggerated even
+
+55
+00:01:50,057 --> 00:01:51,096
+more when you draw incredibly
+
+56
+00:01:52,048 --> 00:01:54,029
+skinny, tall skinny contours,
+
+57
+00:01:56,023 --> 00:01:57,003
+and it can be even more extreme
+
+58
+00:01:57,037 --> 00:01:59,006
+than, then, gradient descent
+
+59
+00:01:59,079 --> 00:02:02,031
+just have a much
+
+60
+00:02:02,062 --> 00:02:04,028
+harder time taking it's way,
+
+61
+00:02:04,068 --> 00:02:06,003
+meandering around, it can take
+
+62
+00:02:06,012 --> 00:02:08,027
+a long time to find this way to the global minimum.
+
+63
+00:02:12,012 --> 00:02:14,037
+In these settings, a useful
+
+64
+00:02:14,078 --> 00:02:16,028
+thing to do is to scale the features.
+
+65
+00:02:17,037 --> 00:02:18,075
+Concretely if you instead
+
+66
+00:02:19,019 --> 00:02:20,037
+define the feature X
+
+67
+00:02:20,056 --> 00:02:21,077
+one to be the size of
+
+68
+00:02:21,087 --> 00:02:23,006
+the house divided by two thousand,
+
+69
+00:02:24,003 --> 00:02:25,013
+and define X two to be
+
+70
+00:02:25,027 --> 00:02:26,052
+maybe the number of bedrooms divided
+
+71
+00:02:26,093 --> 00:02:29,000
+by five, then the
+
+72
+00:02:29,016 --> 00:02:30,002
+count well as of the
+
+73
+00:02:30,009 --> 00:02:31,084
+cost function J can become
+
+74
+00:02:32,090 --> 00:02:34,043
+much more, much less
+
+75
+00:02:34,084 --> 00:02:36,099
+skewed so the contours may look more like circles.
+
+76
+00:02:38,021 --> 00:02:39,018
+And if you run gradient
+
+77
+00:02:39,052 --> 00:02:40,053
+descent on a cost function like
+
+78
+00:02:40,075 --> 00:02:42,012
+this, then gradient descent,
+
+79
+00:02:44,011 --> 00:02:45,062
+you can show mathematically, you can
+
+80
+00:02:45,086 --> 00:02:47,043
+find a much more direct path
+
+81
+00:02:47,053 --> 00:02:48,083
+to the global minimum rather than taking
+
+82
+00:02:49,038 --> 00:02:51,019
+a much more convoluted path
+
+83
+00:02:51,053 --> 00:02:52,053
+where you're sort of trying to
+
+84
+00:02:52,062 --> 00:02:53,052
+follow a much more complicated
+
+85
+00:02:54,031 --> 00:02:55,090
+trajectory to get to the global minimum.
+
+86
+00:02:57,030 --> 00:02:58,071
+So, by scaling the features so
+
+87
+00:02:58,094 --> 00:03:01,000
+that there are, the consumer ranges of values.
+
+88
+00:03:01,062 --> 00:03:02,081
+In this example, we end up
+
+89
+00:03:02,096 --> 00:03:04,015
+with both features, X one
+
+90
+00:03:04,030 --> 00:03:06,096
+and X two, between zero and one.
+
+91
+00:03:09,058 --> 00:03:12,028
+You can wind up with an implementation of gradient descent.
+
+92
+00:03:12,068 --> 00:03:13,081
+They can convert much faster.
+
+93
+00:03:18,012 --> 00:03:19,063
+More generally, when we're performing
+
+94
+00:03:20,015 --> 00:03:21,024
+feature scaling, what we often
+
+95
+00:03:21,053 --> 00:03:22,047
+want to do is get every
+
+96
+00:03:22,075 --> 00:03:25,066
+feature into approximately a  -1
+
+97
+00:03:25,078 --> 00:03:28,016
+to +1 range and concretely,
+
+98
+00:03:28,096 --> 00:03:31,071
+your feature x0 is always equal to 1.
+
+99
+00:03:31,075 --> 00:03:32,081
+So, that's already in that range,
+
+100
+00:03:34,011 --> 00:03:35,015
+but you may end up dividing
+
+101
+00:03:35,062 --> 00:03:36,094
+other features by different numbers
+
+102
+00:03:37,033 --> 00:03:39,015
+to get them to this range.
+
+103
+00:03:39,050 --> 00:03:41,052
+The numbers -1 and +1 aren't too important.
+
+104
+00:03:42,027 --> 00:03:42,090
+So, if you have a feature,
+
+105
+00:03:44,015 --> 00:03:45,034
+x1 that winds up
+
+106
+00:03:45,050 --> 00:03:48,000
+being between zero and three, that's not a problem.
+
+107
+00:03:48,040 --> 00:03:49,040
+If you end up having a different
+
+108
+00:03:49,059 --> 00:03:51,018
+feature that winds being
+
+109
+00:03:52,013 --> 00:03:54,002
+between -2 and  + 0.5,
+
+110
+00:03:54,030 --> 00:03:55,071
+again, this is close enough
+
+111
+00:03:56,006 --> 00:03:57,006
+to minus one and plus one
+
+112
+00:03:57,031 --> 00:03:59,015
+that, you know, that's fine, and that's fine.
+
+113
+00:04:00,031 --> 00:04:01,025
+It's only if you have a
+
+114
+00:04:01,034 --> 00:04:02,058
+different feature, say X 3
+
+115
+00:04:02,081 --> 00:04:04,078
+that is between, that
+
+116
+00:04:05,084 --> 00:04:09,006
+ranges from -100 tp +100
+
+117
+00:04:09,033 --> 00:04:10,084
+, then, this is a
+
+118
+00:04:11,009 --> 00:04:13,056
+very different values than minus 1 and plus 1.
+
+119
+00:04:13,086 --> 00:04:15,002
+So, this might be a
+
+120
+00:04:15,022 --> 00:04:17,048
+less well-skilled feature and similarly,
+
+121
+00:04:17,097 --> 00:04:19,033
+if your features take on a
+
+122
+00:04:19,042 --> 00:04:20,068
+very, very small range of
+
+123
+00:04:20,094 --> 00:04:22,006
+values so if X 4
+
+124
+00:04:22,033 --> 00:04:25,052
+takes on values between minus
+
+125
+00:04:25,074 --> 00:04:28,029
+0.0001 and positive 0.0001, then
+
+126
+00:04:29,072 --> 00:04:30,077
+again this takes on a
+
+127
+00:04:30,091 --> 00:04:31,095
+much smaller range of values
+
+128
+00:04:32,045 --> 00:04:33,075
+than the minus one to plus one range.
+
+129
+00:04:34,004 --> 00:04:36,062
+And again I would consider this feature poorly scaled.
+
+130
+00:04:37,085 --> 00:04:39,014
+So you want the range of
+
+131
+00:04:39,043 --> 00:04:40,035
+values, you know, can be
+
+132
+00:04:41,006 --> 00:04:42,000
+bigger than plus or smaller
+
+133
+00:04:42,037 --> 00:04:43,083
+than plus one, but just
+
+134
+00:04:44,004 --> 00:04:45,017
+not much bigger, like plus
+
+135
+00:04:45,061 --> 00:04:47,047
+100 here, or too
+
+136
+00:04:47,064 --> 00:04:49,099
+much smaller like 0.00 one over there.
+
+137
+00:04:50,076 --> 00:04:52,052
+Different people have different rules of thumb.
+
+138
+00:04:52,087 --> 00:04:53,091
+But the one that I use is
+
+139
+00:04:54,006 --> 00:04:55,043
+that if a feature takes
+
+140
+00:04:55,067 --> 00:04:56,075
+on the range of values from
+
+141
+00:04:56,098 --> 00:04:58,058
+say minus three the plus
+
+142
+00:04:58,083 --> 00:05:00,012
+3 how you should think that should
+
+143
+00:05:00,017 --> 00:05:01,068
+be just fine, but maybe
+
+144
+00:05:02,000 --> 00:05:03,005
+it takes on much larger values
+
+145
+00:05:03,043 --> 00:05:04,036
+than plus 3 or minus 3
+
+146
+00:05:04,052 --> 00:05:06,039
+unless not to worry and if
+
+147
+00:05:06,069 --> 00:05:09,066
+it takes on values from say minus one-third to one-third.
+
+148
+00:05:10,092 --> 00:05:12,001
+You know, I think that's fine
+
+149
+00:05:12,026 --> 00:05:14,087
+too or 0 to one-third or minus one-third to 0.
+
+150
+00:05:14,091 --> 00:05:17,088
+I guess that's typical range of value sector 0 okay.
+
+151
+00:05:18,056 --> 00:05:19,031
+But it will take on a
+
+152
+00:05:19,044 --> 00:05:20,063
+much tinier range of values
+
+153
+00:05:20,089 --> 00:05:23,022
+like x4 here than gain on mine not to worry.
+
+154
+00:05:23,079 --> 00:05:25,006
+So, the take-home message
+
+155
+00:05:25,050 --> 00:05:26,077
+is don't worry if your
+
+156
+00:05:27,000 --> 00:05:28,055
+features are not exactly on
+
+157
+00:05:28,069 --> 00:05:30,092
+the same scale or exactly in the same range of values.
+
+158
+00:05:31,017 --> 00:05:31,093
+But so long as they're all
+
+159
+00:05:32,008 --> 00:05:35,006
+close enough to this gradient descent it should work okay.
+
+160
+00:05:35,093 --> 00:05:37,052
+In addition to dividing by
+
+161
+00:05:37,093 --> 00:05:39,095
+so that the maximum value when
+
+162
+00:05:40,022 --> 00:05:42,007
+performing feature scaling sometimes
+
+163
+00:05:42,073 --> 00:05:45,006
+people will also do what's called mean normalization.
+
+164
+00:05:45,032 --> 00:05:47,014
+And what I mean by
+
+165
+00:05:47,031 --> 00:05:48,012
+that is that you want
+
+166
+00:05:48,035 --> 00:05:49,081
+to take a feature Xi and replace
+
+167
+00:05:50,023 --> 00:05:51,085
+it with Xi minus new i
+
+168
+00:05:52,087 --> 00:05:55,025
+to make your features have approximately 0 mean.
+
+169
+00:05:56,052 --> 00:05:57,073
+And obviously we want
+
+170
+00:05:57,088 --> 00:05:59,025
+to apply this to the future
+
+171
+00:05:59,064 --> 00:06:00,075
+x zero, because the future
+
+172
+00:06:00,093 --> 00:06:02,025
+x zero is always equal to
+
+173
+00:06:02,036 --> 00:06:03,060
+one, so it cannot have an
+
+174
+00:06:03,081 --> 00:06:05,010
+average value of zero.
+
+175
+00:06:06,037 --> 00:06:07,075
+But it concretely for other
+
+176
+00:06:07,094 --> 00:06:09,031
+features if the range
+
+177
+00:06:09,060 --> 00:06:10,031
+of sizes of the house
+
+178
+00:06:10,095 --> 00:06:14,017
+takes on values between 0
+
+179
+00:06:14,031 --> 00:06:15,007
+to 2000 and if you know,
+
+180
+00:06:15,023 --> 00:06:16,023
+the average size of a
+
+181
+00:06:16,047 --> 00:06:18,033
+house is equal to
+
+182
+00:06:18,050 --> 00:06:20,007
+1000 then you might
+
+183
+00:06:21,047 --> 00:06:21,094
+use this formula.
+
+184
+00:06:23,093 --> 00:06:24,097
+Size, set the feature
+
+185
+00:06:25,025 --> 00:06:26,026
+X1 to the size minus
+
+186
+00:06:26,058 --> 00:06:28,000
+the average value divided by 2000
+
+187
+00:06:28,062 --> 00:06:31,081
+and similarly, on average
+
+188
+00:06:32,052 --> 00:06:34,000
+if your houses have
+
+189
+00:06:34,051 --> 00:06:37,062
+one to five bedrooms and if
+
+190
+00:06:39,024 --> 00:06:40,045
+on average a house has
+
+191
+00:06:40,088 --> 00:06:41,092
+two bedrooms then you might
+
+192
+00:06:42,011 --> 00:06:44,075
+use this formula to mean
+
+193
+00:06:45,007 --> 00:06:47,045
+normalize your second feature x2.
+
+194
+00:06:49,033 --> 00:06:50,072
+In both of these cases, you
+
+195
+00:06:50,083 --> 00:06:52,073
+therefore wind up with features x1 and x2.
+
+196
+00:06:52,093 --> 00:06:54,049
+They can take on values roughly
+
+197
+00:06:54,087 --> 00:06:56,057
+between minus .5 and positive .5.
+
+198
+00:06:57,012 --> 00:06:57,087
+Exactly not true - X2
+
+199
+00:06:58,020 --> 00:07:00,092
+can actually be slightly larger than .5 but, close enough.
+
+200
+00:07:01,080 --> 00:07:03,013
+And the more general rule is
+
+201
+00:07:03,052 --> 00:07:04,086
+that you might take a
+
+202
+00:07:04,089 --> 00:07:06,038
+feature X1 and replace
+
+203
+00:07:08,006 --> 00:07:10,011
+it with X1 minus mu1
+
+204
+00:07:10,093 --> 00:07:13,041
+over S1 where to
+
+205
+00:07:13,055 --> 00:07:15,088
+define these terms mu1 is
+
+206
+00:07:16,019 --> 00:07:18,029
+the average value of x1
+
+207
+00:07:19,095 --> 00:07:21,031
+in the training sets
+
+208
+00:07:22,031 --> 00:07:24,018
+and S1 is the
+
+209
+00:07:24,035 --> 00:07:27,042
+range of values of that
+
+210
+00:07:27,081 --> 00:07:28,093
+feature and by range, I
+
+211
+00:07:29,004 --> 00:07:30,011
+mean let's say the maximum
+
+212
+00:07:30,062 --> 00:07:31,089
+value minus the minimum
+
+213
+00:07:32,029 --> 00:07:33,035
+value or for those
+
+214
+00:07:33,058 --> 00:07:35,036
+of you that understand the deviation
+
+215
+00:07:35,085 --> 00:07:37,038
+of the variable is setting S1
+
+216
+00:07:37,075 --> 00:07:40,079
+to be the standard deviation of the variable would be fine, too.
+
+217
+00:07:41,001 --> 00:07:43,024
+But taking, you know, this max minus min would be fine.
+
+218
+00:07:44,032 --> 00:07:45,017
+And similarly for the second
+
+219
+00:07:45,061 --> 00:07:47,037
+feature, x2, you replace
+
+220
+00:07:47,083 --> 00:07:49,074
+x2 with this sort of
+
+221
+00:07:51,004 --> 00:07:52,022
+subtract the mean of the feature
+
+222
+00:07:52,080 --> 00:07:54,011
+and divide it by the range
+
+223
+00:07:54,037 --> 00:07:55,098
+of values meaning the max minus min.
+
+224
+00:07:56,087 --> 00:07:57,091
+And this sort of formula will
+
+225
+00:07:58,037 --> 00:07:59,062
+get your features, you know, maybe
+
+226
+00:07:59,085 --> 00:08:01,001
+not exactly, but maybe roughly
+
+227
+00:08:01,092 --> 00:08:03,031
+into these sorts of
+
+228
+00:08:03,049 --> 00:08:04,081
+ranges, and by the
+
+229
+00:08:04,088 --> 00:08:05,069
+way, for those of you that
+
+230
+00:08:05,093 --> 00:08:07,056
+are being super careful technically if
+
+231
+00:08:07,070 --> 00:08:09,030
+we're taking the range as max
+
+232
+00:08:09,061 --> 00:08:12,041
+minus min this five here will actually become a four.
+
+233
+00:08:13,013 --> 00:08:14,038
+So if max is 5
+
+234
+00:08:14,060 --> 00:08:15,082
+minus 1 then the range of
+
+235
+00:08:16,031 --> 00:08:17,016
+their own values is actually
+
+236
+00:08:17,086 --> 00:08:18,052
+equal to 4, but all of these
+
+237
+00:08:18,068 --> 00:08:20,037
+are approximate and any value
+
+238
+00:08:20,082 --> 00:08:22,000
+that gets the features into
+
+239
+00:08:22,044 --> 00:08:24,075
+anything close to these sorts of ranges will do fine.
+
+240
+00:08:25,019 --> 00:08:27,022
+And the feature scaling
+
+241
+00:08:27,066 --> 00:08:28,051
+doesn't have to be too exact,
+
+242
+00:08:29,005 --> 00:08:30,038
+in order to get gradient
+
+243
+00:08:30,079 --> 00:08:32,028
+descent to run quite a lot faster.
+
+244
+00:08:34,061 --> 00:08:35,084
+So, now you know
+
+245
+00:08:36,001 --> 00:08:37,041
+about feature scaling and if
+
+246
+00:08:37,052 --> 00:08:39,003
+you apply this simple trick, it
+
+247
+00:08:39,025 --> 00:08:40,064
+and make gradient descent run much
+
+248
+00:08:40,087 --> 00:08:43,067
+faster and converge in a lot fewer other iterations.
+
+249
+00:08:44,099 --> 00:08:45,053
+That was feature scaling.
+
+250
+00:08:46,008 --> 00:08:47,019
+In the next video, I'll tell
+
+251
+00:08:47,035 --> 00:08:49,040
+you about another trick to make
+
+252
+00:08:49,071 --> 00:08:50,097
+gradient descent work well in practice.

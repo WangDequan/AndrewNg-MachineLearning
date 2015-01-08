@@ -1,0 +1,396 @@
+
+1
+00:00:00,000 --> 00:00:03,084
+Welcome to the final video of this Machine Learning class.
+
+2
+00:00:03,084 --> 00:00:06,047
+We've been through a lot of different videos together.
+
+3
+00:00:06,047 --> 00:00:08,077
+In this video I would like to just quickly
+
+4
+00:00:08,077 --> 00:00:11,000
+summarize the main topics of this course
+
+5
+00:00:11,000 --> 00:00:13,008
+and then say a few words at the end and that
+
+6
+00:00:13,008 --> 00:00:14,072
+will wrap up the class.
+
+7
+00:00:16,039 --> 00:00:18,001
+So what have we done?
+
+8
+00:00:18,001 --> 00:00:21,095
+In this class we spent a lot of time talking about supervised learning algorithms
+
+9
+00:00:21,095 --> 00:00:25,043
+like linear regression, logistic regression, neural networks, SVMs.
+
+10
+00:00:25,043 --> 00:00:29,043
+for problems where you have labelled data and labelled examples
+
+11
+00:00:29,043 --> 00:00:31,029
+like x(i), y(i)
+
+12
+00:00:31,029 --> 00:00:35,071
+And we also spent quite a lot of time talking about unsupervised learning
+
+13
+00:00:35,071 --> 00:00:37,034
+like K-means clustering,
+
+14
+00:00:37,034 --> 00:00:40,031
+Principal Components Analysis for dimensionality reduction
+
+15
+00:00:40,031 --> 00:00:43,084
+and Anomaly Detection algorithms for when you have only
+
+16
+00:00:43,084 --> 00:00:46,036
+unlabelled data x(i)
+
+17
+00:00:46,036 --> 00:00:49,037
+Although Anomaly Detection can also use some labelled data
+
+18
+00:00:49,037 --> 00:00:51,018
+to evaluate the algorithm.
+
+19
+00:00:51,045 --> 00:00:54,072
+We also spent some time talking about special applications
+
+20
+00:00:54,072 --> 00:00:56,040
+or special topics like Recommender Systems
+
+21
+00:00:56,040 --> 00:00:58,089
+and large scale machine learning systems
+
+22
+00:00:58,089 --> 00:01:01,047
+including parallelized and rapid-use systems
+
+23
+00:01:01,047 --> 00:01:03,092
+as well as some special applications like
+
+24
+00:01:03,092 --> 00:01:07,060
+sliding windows object classification for computer vision.
+
+25
+00:01:07,060 --> 00:01:11,054
+And finally we also spent a lot of time talking about different aspects
+
+26
+00:01:11,054 --> 00:01:15,019
+of, sort of, advice on building a machine learning system.
+
+27
+00:01:15,019 --> 00:01:17,026
+And this involved both trying to understand
+
+28
+00:01:17,026 --> 00:01:19,023
+what is it that makes a machine learning algorithm
+
+29
+00:01:19,023 --> 00:01:20,056
+work or not work.
+
+30
+00:01:20,056 --> 00:01:22,001
+So we talked about things like bias and variance,
+
+31
+00:01:22,001 --> 00:01:25,047
+and how regularization can help with some variance problems.
+
+32
+00:01:25,047 --> 00:01:28,044
+And we also spent a little bit of time talking about
+
+33
+00:01:28,044 --> 00:01:32,031
+this question of how to decide what to work on next.
+
+34
+00:01:32,031 --> 00:01:35,001
+So, how to prioritize how you spend your time
+
+35
+00:01:35,001 --> 00:01:37,051
+when you're developing a machine learning system.
+
+36
+00:01:38,002 --> 00:01:41,004
+So we talked about evaluation of learning algorithms,
+
+37
+00:01:41,004 --> 00:01:44,022
+evaluation metrics like  precision recall, F1 score
+
+38
+00:01:44,022 --> 00:01:47,007
+as well as practical aspects of evaluation
+
+39
+00:01:47,007 --> 00:01:49,089
+like the training, cross-validation and test sets.
+
+40
+00:01:49,089 --> 00:01:52,031
+And we also spent a lot of time talking about
+
+41
+00:01:52,031 --> 00:01:55,074
+debugging learning algorithms and making sure
+
+42
+00:01:55,074 --> 00:01:57,021
+the learning algorithm is working.
+
+43
+00:01:57,021 --> 00:01:59,007
+So we talked about diagnostics
+
+44
+00:01:59,007 --> 00:02:01,099
+like learning curves and also talked about things like
+
+45
+00:02:01,099 --> 00:02:04,039
+error analysis and ceiling analysis.
+
+46
+00:02:04,039 --> 00:02:08,018
+And so all of these were different tools for helping you to decide
+
+47
+00:02:08,018 --> 00:02:10,034
+what to do next and how to spend your valuable
+
+48
+00:02:10,034 --> 00:02:12,058
+time when you're developing a machine learning system.
+
+49
+00:02:12,058 --> 00:02:17,066
+And in addition to having the tools of machine learning at your disposal
+
+50
+00:02:17,066 --> 00:02:20,022
+so knowing the tools of machine learning like
+
+51
+00:02:20,022 --> 00:02:22,012
+supervised learning and unsupervised learning and so on,
+
+52
+00:02:22,012 --> 00:02:26,001
+I hope that you now not only have the tools,
+
+53
+00:02:26,001 --> 00:02:29,045
+but that you know how to apply these tools really well
+
+54
+00:02:29,045 --> 00:02:32,065
+to build powerful machine learning systems.
+
+55
+00:02:33,065 --> 00:02:35,055
+So, that's it.
+
+56
+00:02:35,055 --> 00:02:37,064
+Those were the topics of this class
+
+57
+00:02:37,064 --> 00:02:39,061
+and if you worked all the way through this course
+
+58
+00:02:39,061 --> 00:02:41,030
+you should now consider yourself
+
+59
+00:02:41,030 --> 00:02:43,051
+an expert in machine learning.
+
+60
+00:02:43,051 --> 00:02:46,087
+As you know, machine learning is a technology
+
+61
+00:02:46,087 --> 00:02:49,091
+that's having huge impact on science, technology and industry.
+
+62
+00:02:49,091 --> 00:02:53,036
+And you're now well qualified to use these tools
+
+63
+00:02:53,036 --> 00:02:55,035
+of machine learning to great effect.
+
+64
+00:02:55,035 --> 00:02:57,091
+I hope that many of you in this class
+
+65
+00:02:57,091 --> 00:02:59,076
+will find ways to use machine learning
+
+66
+00:02:59,076 --> 00:03:02,032
+to build cool systems and cool applications
+
+67
+00:03:02,032 --> 00:03:03,094
+and cool products.
+
+68
+00:03:03,094 --> 00:03:06,008
+And I hope that you find ways
+
+69
+00:03:06,008 --> 00:03:07,093
+to use machine learning not only
+
+70
+00:03:07,093 --> 00:03:09,076
+to make <i>your</i> life better but maybe someday
+
+71
+00:03:09,076 --> 00:03:14,074
+to use it to make many other people's life better as well.
+
+72
+00:03:14,077 --> 00:03:19,069
+I also wanted to let you know that this class has been great fun for me to teach.
+
+73
+00:03:19,069 --> 00:03:21,078
+So, thank you for that.
+
+74
+00:03:21,078 --> 00:03:23,080
+And before wrapping up,
+
+75
+00:03:23,080 --> 00:03:25,028
+there's just one last thing I wanted to say.
+
+76
+00:03:25,028 --> 00:03:28,095
+Which is that: It was maybe not so long ago,
+
+77
+00:03:28,095 --> 00:03:31,030
+that I was a student myself.
+
+78
+00:03:31,030 --> 00:03:34,071
+And even today, you know, I still try to take different courses
+
+79
+00:03:34,071 --> 00:03:36,090
+when I have time to try to learn new things.
+
+80
+00:03:36,090 --> 00:03:39,098
+And so I know how time-consuming it is
+
+81
+00:03:39,098 --> 00:03:42,027
+to learn this stuff.
+
+82
+00:03:42,027 --> 00:03:44,066
+I know that you're probably a busy person
+
+83
+00:03:44,066 --> 00:03:47,030
+with many, many other things going on in your life.
+
+84
+00:03:47,030 --> 00:03:49,083
+And so the fact that you still found
+
+85
+00:03:49,083 --> 00:03:52,043
+the time or took the time to watch these videos
+
+86
+00:03:52,043 --> 00:03:55,079
+and, you know, many of these videos just went on
+
+87
+00:03:55,079 --> 00:03:57,059
+for hours, right?
+
+88
+00:03:57,059 --> 00:04:00,006
+And the fact many of you took the time
+
+89
+00:04:00,006 --> 00:04:01,082
+to go through the review questions
+
+90
+00:04:01,082 --> 00:04:03,073
+and that many of you took the time
+
+91
+00:04:03,073 --> 00:04:06,024
+to work through the programming exercises.
+
+92
+00:04:06,024 --> 00:04:09,048
+And these were long and complicate programming exercises.
+
+93
+00:04:09,048 --> 00:04:12,083
+I wanted to say thank you for that.
+
+94
+00:04:12,083 --> 00:04:17,091
+And I know that many of you have worked hard on this class
+
+95
+00:04:17,091 --> 00:04:21,087
+and that many of you have put a lot of time into this class,
+
+96
+00:04:21,087 --> 00:04:25,039
+that many of you have put a lot of yourselves into this class.
+
+97
+00:04:25,039 --> 00:04:29,029
+So I hope that you also got a lot of out this class.
+
+98
+00:04:29,029 --> 00:04:31,034
+And I wanted to say:
+
+99
+00:04:31,034 --> 00:04:36,042
+Thank you very much for having been a student in this class.

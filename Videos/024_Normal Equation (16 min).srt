@@ -1,0 +1,1816 @@
+
+1
+00:00:00,030 --> 00:00:01,088
+In this video, we'll talk about
+
+2
+00:00:01,088 --> 00:00:03,094
+the normal equation, which for
+
+3
+00:00:03,094 --> 00:00:05,066
+some linear regression problems, will
+
+4
+00:00:05,066 --> 00:00:06,098
+give us a much better way
+
+5
+00:00:06,098 --> 00:00:09,011
+to solve for the optimal value
+
+6
+00:00:09,011 --> 00:00:10,087
+of the parameters theta.
+
+7
+00:00:10,087 --> 00:00:13,009
+Concretely, so far the
+
+8
+00:00:13,009 --> 00:00:14,039
+algorithm that we've been using
+
+9
+00:00:14,039 --> 00:00:16,004
+for linear regression is gradient
+
+10
+00:00:16,004 --> 00:00:17,082
+descent where in order
+
+11
+00:00:17,082 --> 00:00:19,041
+to minimize the cost function
+
+12
+00:00:19,041 --> 00:00:21,035
+J of Theta, we would take
+
+13
+00:00:21,035 --> 00:00:23,079
+this iterative algorithm that takes
+
+14
+00:00:23,079 --> 00:00:26,041
+many steps, multiple iterations of
+
+15
+00:00:26,041 --> 00:00:28,025
+gradient descent to converge
+
+16
+00:00:28,025 --> 00:00:30,039
+to the global minimum.
+
+17
+00:00:30,039 --> 00:00:32,056
+In contrast, the normal equation
+
+18
+00:00:32,056 --> 00:00:34,041
+would give us a method to
+
+19
+00:00:34,041 --> 00:00:36,098
+solve for theta analytically, so
+
+20
+00:00:36,098 --> 00:00:38,076
+that rather than needing to run
+
+21
+00:00:38,076 --> 00:00:40,059
+this iterative algorithm, we can
+
+22
+00:00:40,059 --> 00:00:41,036
+instead just solve for the
+
+23
+00:00:41,036 --> 00:00:42,079
+optimal value for theta
+
+24
+00:00:42,079 --> 00:00:44,040
+all at one go, so that in
+
+25
+00:00:44,040 --> 00:00:46,009
+basically one step you get
+
+26
+00:00:46,009 --> 00:00:48,013
+to the optimal value right there.
+
+27
+00:00:49,013 --> 00:00:51,094
+It turns out the normal equation
+
+28
+00:00:52,020 --> 00:00:54,044
+that has some advantages and
+
+29
+00:00:54,044 --> 00:00:56,002
+some disadvantages, but before
+
+30
+00:00:56,002 --> 00:00:57,081
+we get to that and talk about
+
+31
+00:00:57,090 --> 00:00:59,042
+when you should use it, let's
+
+32
+00:00:59,042 --> 00:01:02,053
+get some intuition about what this method does.
+
+33
+00:01:02,053 --> 00:01:04,063
+For this week's planetary example, let's
+
+34
+00:01:04,063 --> 00:01:06,012
+imagine, let's take a
+
+35
+00:01:06,012 --> 00:01:07,050
+very simplified cost function
+
+36
+00:01:07,050 --> 00:01:09,029
+J of Theta, that's just the
+
+37
+00:01:09,029 --> 00:01:11,095
+function of a real number Theta.
+
+38
+00:01:11,095 --> 00:01:13,064
+So, for now, imagine that Theta
+
+39
+00:01:13,084 --> 00:01:16,061
+is just a scalar value or that Theta is just a row value.
+
+40
+00:01:16,076 --> 00:01:18,091
+It's just a number, rather than a vector.
+
+41
+00:01:19,017 --> 00:01:24,059
+Imagine that we have a cost function J
+that's a quadratic function of this real value
+
+42
+00:01:25,002 --> 00:01:27,042
+parameter Theta, so J of Theta
+looks like that.
+
+43
+00:01:27,085 --> 00:01:30,033
+Well, how do you minimize
+a quadratic function?
+
+44
+00:01:30,072 --> 00:01:32,074
+For those of you that know
+a little bit of calculus,
+
+45
+00:01:32,085 --> 00:01:34,096
+you may know that the way to
+
+46
+00:01:34,096 --> 00:01:36,062
+minimize a function is to
+
+47
+00:01:36,062 --> 00:01:38,099
+take derivatives and to
+
+48
+00:01:38,099 --> 00:01:41,070
+set derivatives equal to zero.
+
+49
+00:01:41,070 --> 00:01:44,072
+So, you take the derivative of J
+with respect to the parameter of Theta.
+
+50
+00:01:44,079 --> 00:01:46,084
+You get some formula
+which I am not going to derive,
+
+51
+00:01:46,084 --> 00:01:49,016
+you set that derivative
+
+52
+00:01:49,016 --> 00:01:50,078
+equal to zero, and this
+
+53
+00:01:50,078 --> 00:01:53,050
+allows you to solve for
+
+54
+00:01:53,050 --> 00:01:57,086
+the value of Theda that
+minimizes J of Theta.
+
+55
+00:01:57,086 --> 00:01:59,009
+That was a simpler case
+
+56
+00:01:59,009 --> 00:02:01,071
+of when data was just real number.
+
+57
+00:02:01,071 --> 00:02:04,027
+In the problem that we are
+interested in, Theta is
+
+58
+00:02:04,092 --> 00:02:06,055
+no longer just a real number,
+
+59
+00:02:06,055 --> 00:02:07,084
+but, instead, is this
+
+60
+00:02:07,084 --> 00:02:11,098
+n+1-dimensional parameter vector, and,
+
+61
+00:02:11,098 --> 00:02:13,080
+a cost function J is
+
+62
+00:02:13,080 --> 00:02:15,074
+a function of this vector
+
+63
+00:02:15,074 --> 00:02:17,050
+value or Theta 0 through
+
+64
+00:02:17,050 --> 00:02:18,092
+Theta m. And, a cost
+
+65
+00:02:18,092 --> 00:02:21,095
+function looks like this,
+some square cost function on the right.
+
+66
+00:02:22,037 --> 00:02:25,071
+How do we minimize this cost function J?
+
+67
+00:02:25,071 --> 00:02:27,016
+Calculus actually tells us
+
+68
+00:02:27,016 --> 00:02:29,037
+that, if you, that
+
+69
+00:02:29,037 --> 00:02:30,070
+one way to do so, is
+
+70
+00:02:30,070 --> 00:02:38,060
+to take the partial derivative of J, with respect to every parameter of Theta J in turn, and then, to set
+
+71
+00:02:38,060 --> 00:02:40,027
+all of these to 0.
+
+72
+00:02:40,027 --> 00:02:41,039
+If you do that, and you
+
+73
+00:02:41,039 --> 00:02:42,071
+solve for the values of
+
+74
+00:02:42,071 --> 00:02:44,000
+Theta 0, Theta 1,
+
+75
+00:02:44,000 --> 00:02:45,097
+up to Theta N, then,
+
+76
+00:02:45,097 --> 00:02:47,021
+this would give you that values
+
+77
+00:02:47,021 --> 00:02:48,076
+of Theta to minimize the cost
+
+78
+00:02:48,076 --> 00:02:50,087
+function J.  Where, if
+
+79
+00:02:50,087 --> 00:02:52,017
+you actually work through the
+
+80
+00:02:52,017 --> 00:02:53,059
+calculus and work through
+
+81
+00:02:53,059 --> 00:02:55,019
+the solution to the parameters
+
+82
+00:02:55,019 --> 00:02:57,031
+Theta 0 through Theta N, the
+
+83
+00:02:57,031 --> 00:03:00,051
+derivation ends up being somewhat involved.
+
+84
+00:03:00,051 --> 00:03:01,062
+And, what I am going
+
+85
+00:03:01,062 --> 00:03:03,011
+to do in this video,
+
+86
+00:03:03,011 --> 00:03:04,085
+is actually to not go
+
+87
+00:03:04,085 --> 00:03:06,029
+through the derivation, which is kind
+
+88
+00:03:06,029 --> 00:03:07,065
+of long and kind of involved, but
+
+89
+00:03:07,065 --> 00:03:08,096
+what I want to do is just
+
+90
+00:03:08,096 --> 00:03:10,054
+tell you what you need to know
+
+91
+00:03:10,054 --> 00:03:12,061
+in order to implement this process
+
+92
+00:03:12,061 --> 00:03:14,013
+so you can solve for the
+
+93
+00:03:14,013 --> 00:03:15,051
+values of the thetas that
+
+94
+00:03:15,051 --> 00:03:16,089
+corresponds to where the
+
+95
+00:03:16,089 --> 00:03:19,027
+partial derivatives is equal to zero.
+
+96
+00:03:19,027 --> 00:03:21,073
+Or alternatively, or equivalently,
+
+97
+00:03:21,073 --> 00:03:23,035
+the values of Theta is that
+
+98
+00:03:23,035 --> 00:03:25,090
+minimize the cost function J of Theta.
+
+99
+00:03:25,090 --> 00:03:27,028
+I realize that some of
+
+100
+00:03:27,028 --> 00:03:28,084
+the comments I made that made
+
+101
+00:03:28,084 --> 00:03:29,091
+more sense only to those
+
+102
+00:03:29,091 --> 00:03:31,089
+of you that are normally familiar with calculus.
+
+103
+00:03:31,089 --> 00:03:33,006
+So, but if you don't
+
+104
+00:03:33,006 --> 00:03:34,048
+know, if you're less familiar
+
+105
+00:03:34,048 --> 00:03:36,035
+with calculus, don't worry about it.
+
+106
+00:03:36,035 --> 00:03:37,040
+I'm just going to tell you what
+
+107
+00:03:37,040 --> 00:03:38,037
+you need to know in order to
+
+108
+00:03:38,037 --> 00:03:41,035
+implement this algorithm and get it to work.
+
+109
+00:03:41,035 --> 00:03:42,058
+For the example that I
+
+110
+00:03:42,058 --> 00:03:43,073
+want to use as a running
+
+111
+00:03:43,073 --> 00:03:46,033
+example let's say that
+
+112
+00:03:46,033 --> 00:03:49,005
+I have m = 4 training examples.
+
+113
+00:03:50,040 --> 00:03:52,088
+In order to implement this normal
+
+114
+00:03:52,088 --> 00:03:56,051
+equation at big, what I'm going to do
+is the following.
+
+115
+00:03:56,051 --> 00:03:57,063
+I'm going to take my
+
+116
+00:03:57,063 --> 00:04:00,037
+data set, so here are my four training examples.
+
+117
+00:04:00,037 --> 00:04:01,084
+In this case let's assume that,
+
+118
+00:04:01,084 --> 00:04:06,007
+you know, these four examples is all the data I have.
+
+119
+00:04:06,007 --> 00:04:07,089
+What I am going to do is take
+
+120
+00:04:07,089 --> 00:04:09,000
+my data set and add
+
+121
+00:04:09,000 --> 00:04:11,028
+an extra column that corresponds
+
+122
+00:04:11,028 --> 00:04:14,057
+to my extra feature, x0,
+
+123
+00:04:14,057 --> 00:04:15,096
+that is always takes
+
+124
+00:04:15,096 --> 00:04:17,052
+on this value of 1.
+
+125
+00:04:17,052 --> 00:04:18,068
+What I'm going to do is
+
+126
+00:04:18,068 --> 00:04:19,094
+I'm then going to construct
+
+127
+00:04:19,094 --> 00:04:22,063
+a matrix called X that's
+
+128
+00:04:22,063 --> 00:04:24,063
+a matrix are basically contains all
+
+129
+00:04:24,063 --> 00:04:26,009
+of the features from my
+
+130
+00:04:26,009 --> 00:04:28,014
+training data, so completely
+
+131
+00:04:28,014 --> 00:04:31,052
+here is my here are
+
+132
+00:04:31,052 --> 00:04:33,074
+all my features and we're
+
+133
+00:04:33,074 --> 00:04:34,079
+going to take all those numbers and
+
+134
+00:04:34,079 --> 00:04:37,077
+put them into this matrix "X", okay?
+
+135
+00:04:37,077 --> 00:04:39,017
+So just, you know, copy
+
+136
+00:04:39,017 --> 00:04:41,023
+the data over one column
+
+137
+00:04:41,023 --> 00:04:45,096
+at a time and then I am going to do
+something similar for y's.
+
+138
+00:04:45,096 --> 00:04:47,008
+I am going to take the
+
+139
+00:04:47,008 --> 00:04:47,095
+values that I'm trying to
+
+140
+00:04:47,095 --> 00:04:49,035
+predict and construct now
+
+141
+00:04:49,035 --> 00:04:52,089
+a vector, like so
+
+142
+00:04:52,089 --> 00:04:55,043
+and call that a vector y.
+
+143
+00:04:55,043 --> 00:04:58,003
+So X is going to be a
+
+144
+00:04:59,065 --> 00:05:05,068
+m by (n+1) - dimensional matrix, and
+
+145
+00:05:05,068 --> 00:05:07,048
+Y is going to be
+
+146
+00:05:07,048 --> 00:05:14,042
+a m-dimensional vector
+
+147
+00:05:14,042 --> 00:05:16,062
+where m is the number of
+training examples
+
+148
+00:05:16,098 --> 00:05:18,068
+and n is, n is
+
+149
+00:05:18,068 --> 00:05:20,071
+a number of features, n+1, because of
+
+150
+00:05:20,071 --> 00:05:24,082
+this extra feature X0 that I had.
+
+151
+00:05:24,082 --> 00:05:26,035
+Finally if you take
+
+152
+00:05:26,035 --> 00:05:27,048
+your matrix X and you take
+
+153
+00:05:27,048 --> 00:05:28,059
+your vector Y, and if you
+
+154
+00:05:28,059 --> 00:05:31,006
+just compute this, and set
+
+155
+00:05:31,006 --> 00:05:32,041
+theta to be equal to
+
+156
+00:05:32,041 --> 00:05:34,043
+X transpose X inverse times
+
+157
+00:05:34,043 --> 00:05:36,051
+X transpose Y, this would
+
+158
+00:05:36,051 --> 00:05:38,058
+give you the value of theta
+
+159
+00:05:38,058 --> 00:05:42,055
+that minimizes your cost function.
+
+160
+00:05:42,055 --> 00:05:43,043
+There was a lot
+
+161
+00:05:43,043 --> 00:05:44,041
+that happened on the slides and
+
+162
+00:05:44,041 --> 00:05:47,051
+I work through it using
+one specific example of one dataset.
+
+163
+00:05:47,051 --> 00:05:49,024
+Let me just write this
+
+164
+00:05:49,033 --> 00:05:50,076
+out in a slightly more general form
+
+165
+00:05:50,095 --> 00:05:53,041
+and then let me just,
+and later on in
+
+166
+00:05:53,062 --> 00:05:56,053
+this video let me explain
+this equation a little bit more.
+
+167
+00:05:57,058 --> 00:06:00,068
+It is not yet entirely clear how to do this.
+
+168
+00:06:00,068 --> 00:06:02,012
+In a general case, let us
+
+169
+00:06:02,012 --> 00:06:04,012
+say we have M training examples
+
+170
+00:06:04,012 --> 00:06:05,069
+so X1, Y1 up to
+
+171
+00:06:05,069 --> 00:06:09,031
+Xn, Yn and n features.
+
+172
+00:06:09,031 --> 00:06:10,081
+So, each of the training example
+
+173
+00:06:10,081 --> 00:06:12,092
+x(i) may looks like a vector
+
+174
+00:06:12,092 --> 00:06:16,029
+like this, that is a n+1 dimensional feature vector.
+
+175
+00:06:16,094 --> 00:06:18,034
+The way I'm going to construct the
+
+176
+00:06:18,034 --> 00:06:20,067
+matrix "X", this is
+
+177
+00:06:20,067 --> 00:06:24,082
+also called the design matrix
+
+178
+00:06:24,082 --> 00:06:26,071
+is as follows.
+
+179
+00:06:26,071 --> 00:06:28,064
+Each training example gives
+
+180
+00:06:28,064 --> 00:06:30,054
+me a feature vector like this.
+
+181
+00:06:30,054 --> 00:06:34,049
+say, sort of n+1 dimensional vector.
+
+182
+00:06:34,049 --> 00:06:36,019
+The way I am going to construct my
+
+183
+00:06:36,035 --> 00:06:39,073
+design matrix x is only construct the matrix like this.
+
+184
+00:06:39,073 --> 00:06:40,083
+and what I'm going to
+
+185
+00:06:40,083 --> 00:06:42,010
+do is take the first
+
+186
+00:06:42,010 --> 00:06:43,071
+training example, so that's
+
+187
+00:06:43,071 --> 00:06:46,035
+a vector, take its transpose
+
+188
+00:06:46,035 --> 00:06:48,069
+so it ends up being this,
+
+189
+00:06:48,069 --> 00:06:50,024
+you know, long flat thing and
+
+190
+00:06:50,024 --> 00:06:55,015
+make x1 transpose the first row of my design matrix.
+
+191
+00:06:55,015 --> 00:06:56,022
+Then I am going to take my
+
+192
+00:06:56,022 --> 00:06:58,068
+second training example, x2, take
+
+193
+00:06:58,068 --> 00:07:00,043
+the transpose of that and
+
+194
+00:07:00,043 --> 00:07:01,083
+put that as the second row
+
+195
+00:07:01,083 --> 00:07:04,006
+of x and so on,
+
+196
+00:07:04,006 --> 00:07:07,020
+down until my last training example.
+
+197
+00:07:07,020 --> 00:07:09,027
+Take the transpose of that,
+
+198
+00:07:09,027 --> 00:07:10,085
+and that's my last row of
+
+199
+00:07:10,085 --> 00:07:12,066
+my matrix X. And, so,
+
+200
+00:07:12,066 --> 00:07:14,041
+that makes my matrix X, an
+
+201
+00:07:14,041 --> 00:07:17,012
+M by N +1
+
+202
+00:07:17,012 --> 00:07:19,083
+dimensional matrix.
+
+203
+00:07:19,083 --> 00:07:21,095
+As a concrete example, let's
+
+204
+00:07:21,095 --> 00:07:23,050
+say I have only one
+
+205
+00:07:23,050 --> 00:07:24,066
+feature, really, only one
+
+206
+00:07:24,066 --> 00:07:26,063
+feature other than X zero,
+
+207
+00:07:26,063 --> 00:07:28,016
+which is always equal to 1.
+
+208
+00:07:28,016 --> 00:07:30,037
+So if my feature vectors
+
+209
+00:07:30,037 --> 00:07:32,018
+X-i are equal to this
+
+210
+00:07:32,018 --> 00:07:33,087
+1, which is X-0, then
+
+211
+00:07:33,087 --> 00:07:35,091
+some real feature, like maybe the
+
+212
+00:07:35,091 --> 00:07:37,066
+size of the house, then my
+
+213
+00:07:37,066 --> 00:07:40,094
+design matrix, X, would be equal to this.
+
+214
+00:07:40,094 --> 00:07:42,058
+For the first row, I'm going
+
+215
+00:07:42,058 --> 00:07:46,007
+to basically take this and take its transpose.
+
+216
+00:07:46,007 --> 00:07:51,064
+So, I'm going to end up with 1, and then X-1-1.
+
+217
+00:07:51,064 --> 00:07:53,030
+For the second row, we're going to end
+
+218
+00:07:53,030 --> 00:07:56,007
+up with 1 and then
+
+219
+00:07:56,007 --> 00:07:58,004
+X-1-2 and so
+
+220
+00:07:58,004 --> 00:07:59,004
+on down to 1, and
+
+221
+00:07:59,004 --> 00:08:01,042
+then X-1-M.
+
+222
+00:08:01,042 --> 00:08:03,008
+And thus, this will be
+
+223
+00:08:03,008 --> 00:08:07,077
+a m by 2-dimensional matrix.
+
+224
+00:08:07,077 --> 00:08:08,082
+So, that's how to construct
+
+225
+00:08:08,082 --> 00:08:11,025
+the matrix X. And, the
+
+226
+00:08:11,025 --> 00:08:13,088
+vector Y--sometimes I might
+
+227
+00:08:13,088 --> 00:08:15,048
+write an arrow on top to
+
+228
+00:08:15,048 --> 00:08:16,054
+denote that it is a vector,
+
+229
+00:08:16,054 --> 00:08:19,087
+but very often I'll just write this as Y, either way.
+
+230
+00:08:19,087 --> 00:08:21,018
+The vector Y is obtained by
+
+231
+00:08:21,018 --> 00:08:23,027
+taking all all the labels,
+
+232
+00:08:23,027 --> 00:08:25,009
+all the correct prices of
+
+233
+00:08:25,009 --> 00:08:27,007
+houses in my training set, and
+
+234
+00:08:27,007 --> 00:08:28,096
+just stacking them up into
+
+235
+00:08:28,096 --> 00:08:32,001
+an M-dimensional vector, and
+
+236
+00:08:32,001 --> 00:08:34,051
+that's Y.  Finally, having
+
+237
+00:08:34,051 --> 00:08:36,072
+constructed the matrix X
+
+238
+00:08:36,072 --> 00:08:38,018
+and the vector Y, we then
+
+239
+00:08:38,018 --> 00:08:40,088
+just compute theta as X'(1/X)
+
+240
+00:08:40,088 --> 00:08:47,024
+x X'Y. I just
+
+241
+00:08:47,024 --> 00:08:49,035
+want to make
+
+242
+00:08:49,035 --> 00:08:51,034
+I just want to make sure that
+this equation makes sense to you
+
+243
+00:08:51,034 --> 00:08:52,024
+and that you know how to implement it.
+
+244
+00:08:52,024 --> 00:08:55,022
+So, you know, concretely, what is this X'(1/X)?
+
+245
+00:08:55,022 --> 00:08:57,090
+Well, X'(1/X) is the
+
+246
+00:08:57,090 --> 00:09:02,010
+inverse of the matrix X'X.
+
+247
+00:09:02,010 --> 00:09:04,049
+Concretely, if you were
+
+248
+00:09:04,049 --> 00:09:08,005
+to say set A to
+
+249
+00:09:08,005 --> 00:09:11,011
+be equal to X' x
+
+250
+00:09:11,011 --> 00:09:12,054
+X, so X' is a
+
+251
+00:09:12,054 --> 00:09:14,006
+matrix, X' x X
+
+252
+00:09:14,006 --> 00:09:15,030
+gives you another matrix, and we
+
+253
+00:09:15,030 --> 00:09:17,055
+call that matrix A. Then, you
+
+254
+00:09:17,055 --> 00:09:19,096
+know, X'(1/X) is just
+
+255
+00:09:19,096 --> 00:09:22,035
+you take this matrix A and you invert it, right!
+
+256
+00:09:23,024 --> 00:09:24,041
+This gives, let's say 1/A.
+
+257
+00:09:26,002 --> 00:09:28,091
+And so that's how you compute this thing.
+
+258
+00:09:28,091 --> 00:09:31,045
+You compute X'X and then you compute its inverse.
+
+259
+00:09:31,045 --> 00:09:34,029
+We haven't yet talked about Octave.
+
+260
+00:09:34,029 --> 00:09:35,094
+We'll do so in the later
+
+261
+00:09:35,094 --> 00:09:37,021
+set of videos, but in the
+
+262
+00:09:37,021 --> 00:09:39,007
+Octave programming language or a
+
+263
+00:09:39,007 --> 00:09:40,065
+similar view, and also the
+
+264
+00:09:40,065 --> 00:09:42,095
+matlab programming language is very similar.
+
+265
+00:09:42,095 --> 00:09:46,093
+The command to compute this quantity,
+
+266
+00:09:47,038 --> 00:09:50,032
+X transpose X inverse times
+
+267
+00:09:50,032 --> 00:09:52,053
+X transpose Y, is as follows.
+
+268
+00:09:52,053 --> 00:09:54,090
+In Octave X prime is
+
+269
+00:09:54,090 --> 00:09:58,035
+the notation that you use to denote X transpose.
+
+270
+00:09:58,035 --> 00:10:00,073
+And so, this expression that's
+
+271
+00:10:00,073 --> 00:10:03,058
+boxed in red, that's computing
+
+272
+00:10:03,058 --> 00:10:06,063
+X transpose times X.
+
+273
+00:10:06,063 --> 00:10:08,055
+pinv is a function for
+
+274
+00:10:08,055 --> 00:10:09,070
+computing the inverse of
+
+275
+00:10:09,070 --> 00:10:11,081
+a matrix, so this computes
+
+276
+00:10:11,081 --> 00:10:14,065
+X transpose X inverse,
+
+277
+00:10:14,065 --> 00:10:16,045
+and then you multiply that by
+
+278
+00:10:16,045 --> 00:10:18,026
+X transpose, and you multiply
+
+279
+00:10:18,026 --> 00:10:19,071
+that by Y. So you
+
+280
+00:10:19,071 --> 00:10:22,032
+end computing that formula
+
+281
+00:10:22,032 --> 00:10:24,036
+which I didn't prove,
+
+282
+00:10:24,036 --> 00:10:25,099
+but it is possible to
+
+283
+00:10:25,099 --> 00:10:27,038
+show mathematically even though I'm
+
+284
+00:10:27,038 --> 00:10:28,053
+not going to do so
+
+285
+00:10:28,053 --> 00:10:31,007
+here, that this formula gives you
+
+286
+00:10:31,007 --> 00:10:32,031
+the optimal value of theta
+
+287
+00:10:32,031 --> 00:10:34,086
+in the sense that if you set theta equal
+
+288
+00:10:34,086 --> 00:10:36,051
+to this, that's the value
+
+289
+00:10:36,051 --> 00:10:38,000
+of theta that minimizes the
+
+290
+00:10:38,000 --> 00:10:40,016
+cost function J of theta
+
+291
+00:10:40,016 --> 00:10:41,099
+for the new regression.
+
+292
+00:10:41,099 --> 00:10:44,052
+One last detail in the earlier video.
+
+293
+00:10:44,052 --> 00:10:46,013
+I talked about the feature
+
+294
+00:10:46,013 --> 00:10:47,006
+skill and the idea of
+
+295
+00:10:47,006 --> 00:10:48,087
+getting features to be
+
+296
+00:10:48,087 --> 00:10:50,072
+on similar ranges of
+
+297
+00:10:50,072 --> 00:10:54,090
+Scales of similar ranges of values of each other.
+
+298
+00:10:54,090 --> 00:10:56,087
+If you are using this normal
+
+299
+00:10:56,087 --> 00:10:59,084
+equation method then feature
+
+300
+00:10:59,084 --> 00:11:02,031
+scaling isn't actually necessary
+
+301
+00:11:02,031 --> 00:11:04,036
+and is actually okay if,
+
+302
+00:11:04,036 --> 00:11:06,009
+say, some feature X one
+
+303
+00:11:06,009 --> 00:11:07,055
+is between zero and one,
+
+304
+00:11:07,055 --> 00:11:08,084
+and some feature X two is
+
+305
+00:11:08,084 --> 00:11:10,054
+between ranges from zero to
+
+306
+00:11:10,054 --> 00:11:12,001
+one thousand and some feature
+
+307
+00:11:12,001 --> 00:11:14,015
+x three ranges from zero
+
+308
+00:11:14,015 --> 00:11:15,082
+to ten to the
+
+309
+00:11:15,082 --> 00:11:17,026
+minus five and if
+
+310
+00:11:17,026 --> 00:11:18,032
+you are using the normal equation method
+
+311
+00:11:18,032 --> 00:11:20,029
+this is okay and there is
+
+312
+00:11:20,029 --> 00:11:21,054
+no need to do features
+
+313
+00:11:21,054 --> 00:11:22,074
+scaling, although of course
+
+314
+00:11:22,074 --> 00:11:25,066
+if you are using gradient descent,
+
+315
+00:11:25,066 --> 00:11:27,081
+then, features scaling is still important.
+
+316
+00:11:28,002 --> 00:11:31,002
+Finally, where should you use the gradient descent
+
+317
+00:11:31,002 --> 00:11:33,027
+and when should you use the normal equation method.
+
+318
+00:11:33,027 --> 00:11:35,080
+Here are some of the their advantages and disadvantages.
+
+319
+00:11:35,080 --> 00:11:38,030
+Let's say you have m training
+
+320
+00:11:38,030 --> 00:11:40,091
+examples and n features.
+
+321
+00:11:40,091 --> 00:11:42,085
+One disadvantage of gradient descent
+
+322
+00:11:42,085 --> 00:11:46,001
+is that, you need to choose the learning rate Alpha.
+
+323
+00:11:46,001 --> 00:11:47,037
+And, often, this means running
+
+324
+00:11:47,037 --> 00:11:49,012
+it few times with different learning
+
+325
+00:11:49,012 --> 00:11:51,015
+rate alphas and then seeing what works best.
+
+326
+00:11:51,015 --> 00:11:54,027
+And so that is sort of extra work and extra hassle.
+
+327
+00:11:54,027 --> 00:11:55,097
+Another disadvantage with gradient descent
+
+328
+00:11:55,097 --> 00:11:57,084
+is it needs many more iterations.
+
+329
+00:11:57,084 --> 00:11:59,034
+So, depending on the details,
+
+330
+00:11:59,034 --> 00:12:00,083
+that could make it slower, although
+
+331
+00:12:00,083 --> 00:12:04,039
+there's more to the story as we'll see in a second.
+
+332
+00:12:04,039 --> 00:12:07,054
+As for the normal equation, you don't need to
+choose any learning rate alpha.
+
+333
+00:12:07,082 --> 00:12:11,020
+So that, you know, makes it really convenient,
+makes it simple to implement.
+
+334
+00:12:11,020 --> 00:12:13,088
+You just run it and it usually just works.
+
+335
+00:12:13,088 --> 00:12:15,006
+And you don't need to
+
+336
+00:12:15,006 --> 00:12:16,012
+iterate, so, you don't need
+
+337
+00:12:16,012 --> 00:12:17,045
+to plot J of Theta or
+
+338
+00:12:17,045 --> 00:12:20,049
+check the convergence or take all those extra steps.
+
+339
+00:12:20,049 --> 00:12:21,093
+So far, the balance seems to
+
+340
+00:12:21,093 --> 00:12:23,084
+favor normal the normal equation.
+
+341
+00:12:24,082 --> 00:12:27,008
+Here are some disadvantages of
+
+342
+00:12:27,061 --> 00:12:29,043
+the normal equation, and some advantages of gradient descent.
+
+343
+00:12:29,068 --> 00:12:31,044
+Gradient descent works pretty well,
+
+344
+00:12:31,092 --> 00:12:34,069
+even when you have a very large number of features.
+
+345
+00:12:34,069 --> 00:12:36,016
+So, even if you
+
+346
+00:12:36,016 --> 00:12:37,081
+have millions of features you
+
+347
+00:12:37,081 --> 00:12:40,086
+can run gradient descent and it will be reasonably efficient.
+
+348
+00:12:40,086 --> 00:12:43,038
+It will do something reasonable.
+
+349
+00:12:43,038 --> 00:12:46,056
+In contrast to normal equation, In, in
+
+350
+00:12:46,056 --> 00:12:48,001
+order to solve for the parameters
+
+351
+00:12:48,001 --> 00:12:50,039
+data, we need to solve for this term.
+
+352
+00:12:50,039 --> 00:12:53,005
+We need to compute this term, X transpose, X inverse.
+
+353
+00:12:53,005 --> 00:12:56,032
+This matrix X transpose X.
+
+354
+00:12:56,032 --> 00:13:00,020
+That's an n by n matrix,
+if you have n features.
+
+355
+00:13:00,077 --> 00:13:02,094
+Because, if you look
+
+356
+00:13:02,094 --> 00:13:03,091
+at the dimensions of
+
+357
+00:13:03,091 --> 00:13:05,052
+X transpose the dimension of
+
+358
+00:13:05,052 --> 00:13:07,002
+X, you multiply, figure out what
+
+359
+00:13:07,002 --> 00:13:08,074
+the dimension of the product
+
+360
+00:13:08,074 --> 00:13:10,098
+is, the matrix X transpose
+
+361
+00:13:10,098 --> 00:13:13,072
+X is an n by n matrix where
+
+362
+00:13:13,072 --> 00:13:15,085
+n is the number of features, and
+
+363
+00:13:15,085 --> 00:13:18,064
+for almost computed implementations
+
+364
+00:13:18,064 --> 00:13:20,099
+the cost of inverting
+
+365
+00:13:20,099 --> 00:13:23,008
+the matrix, rose roughly as
+
+366
+00:13:23,008 --> 00:13:25,070
+the cube of the dimension of the matrix.
+
+367
+00:13:25,070 --> 00:13:28,018
+So, computing this inverse costs,
+
+368
+00:13:28,018 --> 00:13:29,096
+roughly order, and cube time.
+
+369
+00:13:29,096 --> 00:13:31,021
+Sometimes, it's slightly faster than
+
+370
+00:13:31,021 --> 00:13:35,005
+N cube but, it's, you know, close enough
+for our purposes.
+
+371
+00:13:35,048 --> 00:13:36,060
+So if n the number of features
+is very large,
+
+372
+00:13:37,064 --> 00:13:39,002
+then computing this
+
+373
+00:13:39,002 --> 00:13:40,057
+quantity can be slow and
+
+374
+00:13:40,057 --> 00:13:44,028
+the normal equation method can actually be much slower.
+
+375
+00:13:44,028 --> 00:13:45,049
+So if n is
+
+376
+00:13:45,049 --> 00:13:47,062
+large then I might
+
+377
+00:13:47,062 --> 00:13:49,048
+usually use gradient descent because
+
+378
+00:13:49,048 --> 00:13:51,087
+we don't want to pay this all in q time.
+
+379
+00:13:51,087 --> 00:13:53,052
+But, if n is relatively small,
+
+380
+00:13:53,052 --> 00:13:57,039
+then the normal equation might give you a better way to solve the parameters.
+
+381
+00:13:57,039 --> 00:13:59,008
+What does small and large mean?
+
+382
+00:13:59,008 --> 00:14:00,074
+Well, if n is on
+
+383
+00:14:00,074 --> 00:14:02,013
+the order of a hundred, then
+
+384
+00:14:02,013 --> 00:14:03,082
+inverting a hundred-by-hundred matrix is
+
+385
+00:14:03,082 --> 00:14:06,053
+no problem by modern computing standards.
+
+386
+00:14:06,053 --> 00:14:10,096
+If n is a thousand, I would still use
+the normal equation method.
+
+387
+00:14:10,096 --> 00:14:12,058
+Inverting a thousand-by-thousand matrix is
+
+388
+00:14:12,058 --> 00:14:15,040
+actually really fast on a modern computer.
+
+389
+00:14:15,040 --> 00:14:18,040
+If n is ten thousand, then I might start to wonder.
+
+390
+00:14:18,040 --> 00:14:20,061
+Inverting a ten-thousand-  by-ten-thousand matrix
+
+391
+00:14:20,061 --> 00:14:22,020
+starts to get kind of slow,
+
+392
+00:14:22,020 --> 00:14:23,047
+and I might then start to
+
+393
+00:14:23,047 --> 00:14:25,000
+maybe lean in the
+
+394
+00:14:25,000 --> 00:14:27,000
+direction of gradient descent, but maybe not quite.
+
+395
+00:14:27,011 --> 00:14:28,067
+n equals ten thousand, you can
+
+396
+00:14:28,067 --> 00:14:31,014
+sort of convert a ten-thousand-by-ten-thousand matrix.
+
+397
+00:14:31,014 --> 00:14:34,034
+But if it gets much bigger than that, then,
+I would probably use gradient descent.
+
+398
+00:14:34,034 --> 00:14:35,083
+So, if n equals ten
+
+399
+00:14:35,083 --> 00:14:36,091
+to the sixth with a million
+
+400
+00:14:36,091 --> 00:14:38,096
+features, then inverting a
+
+401
+00:14:38,096 --> 00:14:41,056
+million-by-million matrix is going
+
+402
+00:14:41,056 --> 00:14:42,063
+to be very expensive, and
+
+403
+00:14:42,063 --> 00:14:46,016
+I would definitely favor gradient descent if you have that many features.
+
+404
+00:14:46,016 --> 00:14:47,085
+So exactly how large
+
+405
+00:14:47,085 --> 00:14:49,028
+set of features has to be
+
+406
+00:14:49,028 --> 00:14:52,065
+before you convert a gradient descent,
+it's hard to give a strict number.
+
+407
+00:14:52,065 --> 00:14:53,085
+But, for me, it is usually
+
+408
+00:14:53,085 --> 00:14:55,050
+around ten thousand that I might
+
+409
+00:14:55,050 --> 00:14:58,025
+start to consider switching over
+
+410
+00:14:58,033 --> 00:15:00,066
+to gradient descents or maybe,
+
+411
+00:15:00,066 --> 00:15:04,032
+some other algorithms that we'll talk about later in this class.
+
+412
+00:15:04,032 --> 00:15:05,076
+To summarize, so long
+
+413
+00:15:05,076 --> 00:15:06,099
+as the number of features is
+
+414
+00:15:06,099 --> 00:15:08,047
+not too large, the normal equation
+
+415
+00:15:08,047 --> 00:15:12,022
+gives us a great alternative method
+to solve for the parameter theta.
+
+416
+00:15:12,058 --> 00:15:13,098
+Concretely, so long as
+
+417
+00:15:13,098 --> 00:15:15,074
+the number of features is less
+
+418
+00:15:15,074 --> 00:15:17,047
+than 1000, you know, I would
+
+419
+00:15:17,047 --> 00:15:18,088
+use, I would usually is used
+
+420
+00:15:18,088 --> 00:15:21,095
+in normal equation method rather than, gradient descent.
+
+421
+00:15:21,095 --> 00:15:23,054
+To preview some ideas that
+
+422
+00:15:23,054 --> 00:15:24,049
+we'll talk about later in this
+
+423
+00:15:24,049 --> 00:15:26,023
+course, as we get
+
+424
+00:15:26,023 --> 00:15:27,091
+to the more complex learning algorithm, for
+
+425
+00:15:27,091 --> 00:15:29,061
+example, when we talk about
+
+426
+00:15:29,061 --> 00:15:32,018
+classification algorithm, like a logistic regression algorithm,
+
+427
+00:15:32,083 --> 00:15:34,031
+We'll see that those algorithm
+
+428
+00:15:34,031 --> 00:15:35,046
+actually...
+
+429
+00:15:35,046 --> 00:15:37,059
+The normal  equation method
+actually do not work
+
+430
+00:15:37,059 --> 00:15:39,038
+for those more sophisticated
+
+431
+00:15:39,038 --> 00:15:41,019
+learning algorithms, and, we
+
+432
+00:15:41,019 --> 00:15:43,091
+will have to resort to gradient descent
+for those algorithms.
+
+433
+00:15:43,091 --> 00:15:46,068
+So, gradient descent is a very useful algorithm to know.
+
+434
+00:15:46,068 --> 00:15:48,085
+The linear regression will have
+
+435
+00:15:48,098 --> 00:15:50,001
+a large number of features and
+
+436
+00:15:50,001 --> 00:15:52,037
+for some of the other algorithms
+
+437
+00:15:52,037 --> 00:15:53,089
+that we'll see in
+
+438
+00:15:53,089 --> 00:15:55,043
+this course, because, for them, the normal
+
+439
+00:15:55,043 --> 00:15:58,074
+equation method just doesn't apply and doesn't work.
+
+440
+00:15:58,074 --> 00:16:00,053
+But for this specific model of
+
+441
+00:16:00,053 --> 00:16:02,090
+linear regression, the normal equation
+
+442
+00:16:02,090 --> 00:16:05,082
+can give you a alternative
+
+443
+00:16:07,021 --> 00:16:08,061
+that can be much faster, than gradient descent.
+
+444
+00:16:09,060 --> 00:16:11,091
+So, depending on the detail of your algortithm,
+
+445
+00:16:12,000 --> 00:16:14,016
+depending of the detail of the problems and
+
+446
+00:16:14,016 --> 00:16:15,054
+how many features that you have,
+
+447
+00:16:15,054 --> 00:16:19,054
+both of these algorithms are
+well worth knowing about.
